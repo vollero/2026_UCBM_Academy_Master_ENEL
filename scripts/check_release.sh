@@ -17,8 +17,9 @@ while IFS= read -r path; do
   require_file "$path"
 done <<'EOF'
 README.md
-docs/workflow-docente.md
-docs/source-material-index.md
+docs/guida-studenti.md
+docs/setup-laboratorio.md
+docs/indice-materiali.md
 manifest/materials.tsv
 slides/blocks/block01_dominio_relazioni/block01_dominio_relazioni.pdf
 slides/blocks/block02_chiavi_vincoli_integrita/block02_chiavi_vincoli_integrita.pdf

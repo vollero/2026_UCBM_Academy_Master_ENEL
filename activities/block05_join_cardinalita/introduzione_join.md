@@ -92,7 +92,7 @@ Se una vendita contiene più prodotti, dopo il join vedremo più righe per la st
 
 ## Ricostruire il report iniziale
 
-Problema informale: il docente mostra una tabella unica con cliente, vendita e prodotto. Gli studenti devono ricostruire lo stesso contenuto partendo dallo schema normalizzato.
+Problema informale: viene mostrata una tabella unica con cliente, vendita e prodotto. Bisogna ricostruire lo stesso contenuto partendo dallo schema normalizzato.
 
 Specifica:
 
@@ -306,4 +306,3 @@ ORDER BY c.customer_id;
 - Il tipo di join riflette un collegamento obbligatorio o opzionale?
 - Il fan-out è previsto e controllato?
 - Le colonne sono qualificate con alias leggibili?
-

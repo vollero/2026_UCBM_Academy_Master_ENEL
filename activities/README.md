@@ -12,8 +12,8 @@ Ogni blocco 30-90 ha una cartella dedicata. La struttura della pratica è unifor
 
 File disponibili per ogni blocco:
 
-- `activity.md`: traccia pratica da dare agli studenti;
-- `solution.md`: soluzione o soluzione guidata per il docente;
+- `activity.md`: traccia pratica;
+- `solution.md`: soluzione o discussione guidata;
 - `<blocco>_activity.pdf`: PDF attività con traccia, suggerimenti e soluzione;
 - `solution.sql`: query soluzione caricabili nel DBMS per i blocchi 4-12;
 - slide descrittive e solutive nel PDF del blocco corrispondente.

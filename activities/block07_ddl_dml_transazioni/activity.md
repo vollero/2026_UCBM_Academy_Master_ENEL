@@ -1,7 +1,7 @@
 # Blocco 7 - DDL, DML e transazioni
 
 ## 1. Problema in forma informale
-Il product manager chiede una nuova tabella per audit prezzi e un aggiornamento controllato di alcuni prodotti. Il docente vuole vedere procedura e controlli, non solo l'istruzione finale.
+Il product manager chiede una nuova tabella per audit prezzi e un aggiornamento controllato di alcuni prodotti. La consegna richiede procedura e controlli, non solo l'istruzione finale.
 
 ## 2. Specifica corretta del problema
 - input: tabella `products` e categoria scelta;

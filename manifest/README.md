@@ -1,11 +1,10 @@
-# Manifest
+# Elenco Tecnico Dei File
 
-Il file `materials.tsv` viene generato da `scripts/sync_from_source.sh`.
+Il file `materials.tsv` contiene l'elenco tecnico dei materiali presenti nella repository.
 
-Contiene:
+Per ogni file trovate:
 
-- percorso del file nella repo studenti;
+- percorso nella repository;
 - dimensione in byte.
 
-Non modificarlo manualmente.
-
+Non è necessario usare questo file per seguire il corso: serve solo come controllo rapido dell'elenco dei materiali.

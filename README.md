@@ -1,46 +1,53 @@
-# Relational Databases & SQL - Materiale studenti
+# Relational Databases & SQL
 
-Questa repository contiene il materiale rilasciabile agli studenti per il corso **Relational Databases & SQL**.
+Materiale del corso **Relational Databases & SQL** per il Master ENEL 2026.
 
-Il materiale sorgente del docente resta nella cartella padre. Questa repo contiene una copia pulita dei file da distribuire: PDF, tracce, handout, script SQL ed eventuali materiali aggiuntivi.
+Qui trovate slide, attività pratiche, esercitazioni SQL e script per lavorare con PostgreSQL.
 
-## Struttura
+## Da Dove Iniziare
 
-- `slides/blocks/`: PDF delle lezioni e slide aggiuntive.
-- `activities/`: tracce, handout PDF, soluzioni e script SQL collegati ai blocchi.
-- `sql/`: script PostgreSQL di laboratorio.
-- `docs/`: note operative e indice copiato dal materiale sorgente.
-- `manifest/materials.tsv`: elenco generato dei file rilasciati.
-- `scripts/`: script per sincronizzare e verificare il rilascio.
+1. Leggete [docs/guida-studenti.md](docs/guida-studenti.md).
+2. Aprite le slide del blocco in `slides/blocks/`.
+3. Usate il PDF attività corrispondente in `activities/<blocco>/`.
+4. Per le esercitazioni SQL, preparate PostgreSQL seguendo [docs/setup-laboratorio.md](docs/setup-laboratorio.md).
 
-## Aggiornare la repo dal materiale sorgente
+## Organizzazione
 
-Dalla cartella padre, rigenerare prima i PDF:
+- `slides/blocks/`: slide PDF delle lezioni e materiali introduttivi aggiuntivi.
+- `activities/`: tracce, handout, esercitazioni Docker, file Markdown e script SQL.
+- `sql/`: schema dati e script SQL generali del laboratorio.
+- `docs/`: guida studenti, setup laboratorio e indice dei materiali.
+
+## Percorso Del Corso
+
+| Blocco | Tema |
+| --- | --- |
+| 1 | Dalla tabella singola alle relazioni |
+| 2 | Chiavi, domini e integrità |
+| 3 | Normalizzazione e schema relazionale |
+| 4 | Prime query SQL |
+| 5 | JOIN e cardinalità |
+| 6 | Aggregazioni e KPI |
+| 7 | DDL, DML e transazioni |
+| 8 | Subquery e logica insiemistica |
+| 9 | CTE, viste e mantenibilità |
+| 10 | Window function |
+| 11 | Performance, EXPLAIN e indici |
+| 12 | Capstone query design |
+
+## Laboratorio SQL
+
+Per caricare il database di laboratorio in PostgreSQL:
 
 ```bash
-make
-make extras
+psql -d sql_training -f sql/01_schema_seed_postgres.sql
 ```
 
-Poi entrare nella repo studenti e sincronizzare:
+Se usate Docker, seguite [docs/setup-laboratorio.md](docs/setup-laboratorio.md).
 
-```bash
-cd student-release
-make sync
-make check
-git status
-```
+## Indice Completo
 
-Quando il risultato è corretto:
+L'elenco dei materiali principali è in [docs/indice-materiali.md](docs/indice-materiali.md).
 
-```bash
-git add .
-git commit -m "Aggiorna materiale studenti"
-```
-
-## Regola di manutenzione
-
-Non modificare manualmente i file dentro `slides/`, `activities/` e `sql/`: vengono sovrascritti da `make sync`.
-
-Le modifiche manuali vanno fatte nei sorgenti del corso, nella cartella padre. Questa repo deve restare una fotografia pulita e versionata del materiale rilasciato.
+Il file `manifest/materials.tsv` è un elenco tecnico dei file presenti nella repository.
 
