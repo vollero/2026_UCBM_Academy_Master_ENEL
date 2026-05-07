@@ -26,43 +26,34 @@ Non serve installare PostgreSQL sul computer: il DBMS gira dentro il container.
 
 ## 1. Avviare PostgreSQL
 
-Eseguire:
+Dalla cartella principale della repository, eseguire:
 
 ```bash
-docker run --name rdsql-postgres \
-  -e POSTGRES_USER=training \
-  -e POSTGRES_PASSWORD=training \
-  -e POSTGRES_DB=training \
-  -p 5432:5432 \
-  -d postgres:16
+docker compose up -d postgres
 ```
 
-Significato dei parametri:
+Il file `docker-compose.yml` definisce:
 
-- `--name rdsql-postgres`: assegna un nome riconoscibile al container;
-- `POSTGRES_USER=training`: crea l'utente `training`;
-- `POSTGRES_PASSWORD=training`: imposta la password dell'utente;
-- `POSTGRES_DB=training`: crea il database `training`;
-- `-p 5432:5432`: espone PostgreSQL sulla porta locale `5432`;
-- `-d postgres:16`: avvia il container in background usando l'immagine PostgreSQL 16.
+- container `rdsql-postgres`;
+- immagine `postgres:16`;
+- utente `training`;
+- password `training`;
+- database `training`;
+- porta `5432` esposta sul computer.
 
 Se la porta `5432` è già occupata:
 
-```bash
-docker run --name rdsql-postgres \
-  -e POSTGRES_USER=training \
-  -e POSTGRES_PASSWORD=training \
-  -e POSTGRES_DB=training \
-  -p 15432:5432 \
-  -d postgres:16
+```yaml
+ports:
+  - "15432:5432"
 ```
 
-In questo caso PostgreSQL sarà raggiungibile dal computer host sulla porta `15432`, mentre dentro il container continuerà a usare la porta `5432`.
+In questo caso modificare `docker-compose.yml` prima di avviare il container. Dentro il container PostgreSQL continuerà a usare la porta `5432`.
 
 ## 2. Controllare che il container sia attivo
 
 ```bash
-docker ps --filter name=rdsql-postgres
+docker compose ps
 ```
 
 Per leggere i messaggi di avvio:
@@ -291,22 +282,22 @@ Quindi ogni esecuzione riparte da uno stato pulito.
 Fermare PostgreSQL:
 
 ```bash
-docker stop rdsql-postgres
+docker compose stop postgres
 ```
 
 Riavviarlo:
 
 ```bash
-docker start rdsql-postgres
+docker compose up -d postgres
 ```
 
-Rimuovere completamente il container:
+Rimuovere completamente container e dati del laboratorio:
 
 ```bash
-docker rm -f rdsql-postgres
+docker compose down -v
 ```
 
-La rimozione elimina anche i dati interni al container, se non è stato configurato un volume persistente.
+La rimozione elimina anche il volume Docker con i dati del laboratorio.
 
 ## 11. Problemi comuni
 
@@ -319,23 +310,23 @@ Conflict. The container name "/rdsql-postgres" is already in use.
 Soluzione:
 
 ```bash
-docker start rdsql-postgres
+docker compose up -d postgres
 ```
 
 oppure, se si vuole ripartire da zero:
 
 ```bash
-docker rm -f rdsql-postgres
+docker compose down -v
+docker compose up -d postgres
 ```
-
-e poi rieseguire `docker run`.
 
 ### La porta 5432 è occupata
 
-Usare una porta locale alternativa:
+Modificare `docker-compose.yml` e usare una porta locale alternativa:
 
-```bash
--p 15432:5432
+```yaml
+ports:
+  - "15432:5432"
 ```
 
 Quando si usa `docker exec`, la porta host non conta perché ci si collega dall'interno del container.
@@ -367,4 +358,3 @@ Controllare di usare:
 - 20 minuti: caricamento dello script completo;
 - 20 minuti: query di verifica e discussione sul perché lo schema normalizzato ricostruisce il report iniziale;
 - 10 minuti: errori guidati su chiave primaria e chiave esterna.
-

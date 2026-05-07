@@ -16,7 +16,7 @@ Il product manager chiede una nuova tabella per audit prezzi e un aggiornamento 
 4. scegliere `ROLLBACK` in laboratorio oppure `COMMIT` solo dopo verifica.
 
 ## 4. Implementazione completa o artefatto atteso
-Soluzione caricabile in PostgreSQL dopo lo schema di laboratorio.
+Soluzione caricabile nel container PostgreSQL Docker dopo lo schema di laboratorio.
 
 ```sql
 SET search_path TO training;

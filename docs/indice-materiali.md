@@ -40,3 +40,7 @@ Per ogni blocco sono presenti:
 - `sql/03_solutions.sql`: soluzioni SQL;
 - `sql/00_schema_and_all_solutions_postgres.sql`: schema, dati e soluzioni in un unico script.
 
+## Ambiente Docker
+
+- `docker-compose.yml`: container PostgreSQL standard del laboratorio;
+- `docs/setup-laboratorio.md`: istruzioni per avviare il container, caricare lo schema ed eseguire gli script.

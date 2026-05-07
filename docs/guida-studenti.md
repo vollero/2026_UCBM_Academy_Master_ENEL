@@ -10,7 +10,7 @@ Per ogni blocco:
 
 1. aprite il PDF delle slide in `slides/blocks/<blocco>/`;
 2. leggete l'handout dell'attività in `activities/<blocco>/`;
-3. se il blocco prevede SQL, eseguite gli script `.sql` nel database di laboratorio;
+3. se il blocco prevede SQL, eseguite gli script `.sql` nel container PostgreSQL Docker del laboratorio;
 4. usate i file Markdown come traccia rapida o come riferimento testuale.
 
 ## Materiali Principali
@@ -20,6 +20,7 @@ Per ogni blocco:
 - PDF attività: `activities/<blocco>/<blocco>_activity.pdf`
 - Soluzioni e script SQL: disponibili nelle cartelle `activities/<blocco>/` quando previsti
 - Script generali di laboratorio: `sql/`
+- Ambiente Docker del laboratorio: `docker-compose.yml`
 
 ## Materiali Aggiuntivi
 
@@ -33,9 +34,9 @@ Alcuni blocchi includono anche materiali introduttivi o casi studio:
 
 ## Per Lavorare Con SQL
 
-Potete usare PostgreSQL installato localmente oppure PostgreSQL in Docker.
+Il laboratorio del corso usa PostgreSQL in Docker. Non serve installare PostgreSQL direttamente sul computer: serve Docker avviato e il container definito in `docker-compose.yml`.
 
-La procedura con Docker è descritta in [setup-laboratorio.md](setup-laboratorio.md).
+La procedura è descritta in [setup-laboratorio.md](setup-laboratorio.md).
 
 ## Convenzioni Usate Nel Corso
 
@@ -44,4 +45,3 @@ La procedura con Docker è descritta in [setup-laboratorio.md](setup-laboratorio
 - I nomi delle tabelle e delle colonne vanno letti come parte del modello.
 - Quando una query usa più tabelle, è utile controllare se il numero di righe cambia.
 - Quando una query aggrega, è importante chiarire popolazione, denominatore e metrica.
-

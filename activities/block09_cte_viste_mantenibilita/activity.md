@@ -16,7 +16,7 @@ Una query KPI è diventata lunga e fragile. Il compito è renderla leggibile e r
 4. creare una vista solo per una definizione stabile e riusabile.
 
 ## 4. Implementazione completa o artefatto atteso
-Soluzione caricabile in PostgreSQL dopo lo schema di laboratorio.
+Soluzione caricabile nel container PostgreSQL Docker dopo lo schema di laboratorio.
 
 ```sql
 SET search_path TO training;

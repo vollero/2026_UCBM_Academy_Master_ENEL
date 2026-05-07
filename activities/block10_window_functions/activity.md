@@ -16,7 +16,7 @@ Il management vuole leggere classifiche e trend: ranking dei paesi per mese, ric
 4. usare `lag` per confronto col periodo precedente.
 
 ## 4. Implementazione completa o artefatto atteso
-Soluzione caricabile in PostgreSQL dopo lo schema di laboratorio.
+Soluzione caricabile nel container PostgreSQL Docker dopo lo schema di laboratorio.
 
 ```sql
 SET search_path TO training;

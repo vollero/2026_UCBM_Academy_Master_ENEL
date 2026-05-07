@@ -4,7 +4,7 @@
 Il responsabile commerciale vuole una prima esplorazione del database: prodotti attivi, clienti recenti, ordini aperti, importi netti e spedizioni non concluse.
 
 ## 2. Specifica corretta del problema
-- input: schema `training` caricato in PostgreSQL;
+- input: schema `training` caricato nel container PostgreSQL Docker;
 - output: una query per ciascuna domanda operativa;
 - vincolo: ogni query deve dichiarare ordinamento e alias delle colonne calcolate;
 - vincolo: i valori mancanti vanno gestiti con `IS NULL` o `IS NOT NULL`.
@@ -16,7 +16,7 @@ Il responsabile commerciale vuole una prima esplorazione del database: prodotti 
 4. salvare le query finali in `solution.sql`.
 
 ## 4. Implementazione completa o artefatto atteso
-Soluzione caricabile in PostgreSQL dopo lo schema di laboratorio.
+Soluzione caricabile nel container PostgreSQL Docker dopo lo schema di laboratorio.
 
 ```sql
 SET search_path TO training;

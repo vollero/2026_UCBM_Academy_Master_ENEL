@@ -2,6 +2,8 @@
 
 Questa cartella contiene le attività pratiche del corso, separate dalle slide.
 
+Le attività SQL sono pensate per essere eseguite nel container PostgreSQL Docker del corso. Prima dei blocchi SQL avviare il laboratorio con `docker compose up -d postgres` dalla cartella principale della repository.
+
 Ogni blocco 30-90 ha una cartella dedicata. La struttura della pratica è uniforme:
 
 1. problema in forma informale;

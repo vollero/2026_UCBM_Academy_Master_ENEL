@@ -88,6 +88,10 @@ copy_pdf_tree "$source_root/slides/blocks" "$repo_root/slides/blocks"
 copy_activity_tree "$source_root/activities" "$repo_root/activities"
 copy_sql_tree "$source_root/sql" "$repo_root/sql"
 
+if [[ -f "$source_root/docker-compose.yml" ]]; then
+  cp "$source_root/docker-compose.yml" "$repo_root/docker-compose.yml"
+fi
+
 rm -f "$repo_root/docs/source-material-index.md" "$repo_root/docs/workflow-docente.md"
 
 {
@@ -96,7 +100,9 @@ rm -f "$repo_root/docs/source-material-index.md" "$repo_root/docs/workflow-docen
   echo -e "path\tbytes"
   (
     cd "$repo_root"
-    find slides activities sql docs -type f | sort | while IFS= read -r file; do
+    for path in README.md docker-compose.yml slides activities sql docs; do
+      [[ -e "$path" ]] && find "$path" -type f
+    done | sort | while IFS= read -r file; do
       bytes="$(wc -c < "$file" | tr -d ' ')"
       printf '%s\t%s\n' "$file" "$bytes"
     done

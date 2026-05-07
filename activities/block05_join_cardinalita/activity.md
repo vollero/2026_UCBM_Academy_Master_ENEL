@@ -16,7 +16,7 @@ Il team vendite vuole leggere insieme clienti, ordini e prodotti, e vuole anche 
 4. controllare righe base e righe finali con `count(*)`.
 
 ## 4. Implementazione completa o artefatto atteso
-Soluzione caricabile in PostgreSQL dopo lo schema di laboratorio.
+Soluzione caricabile nel container PostgreSQL Docker dopo lo schema di laboratorio.
 
 ```sql
 SET search_path TO training;

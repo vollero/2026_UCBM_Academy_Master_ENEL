@@ -16,7 +16,7 @@ Marketing e operations chiedono segmenti particolari: clienti con ordini sopra m
 4. usare `EXCEPT` per differenze esplicite tra insiemi.
 
 ## 4. Implementazione completa o artefatto atteso
-Soluzione caricabile in PostgreSQL dopo lo schema di laboratorio.
+Soluzione caricabile nel container PostgreSQL Docker dopo lo schema di laboratorio.
 
 ```sql
 SET search_path TO training;

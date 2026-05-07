@@ -17,6 +17,7 @@ while IFS= read -r path; do
   require_file "$path"
 done <<'EOF'
 README.md
+docker-compose.yml
 docs/guida-studenti.md
 docs/setup-laboratorio.md
 docs/indice-materiali.md

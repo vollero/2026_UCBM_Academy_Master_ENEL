@@ -1,21 +1,26 @@
 # Setup Laboratorio PostgreSQL
 
-Questa guida mostra come eseguire gli script SQL del corso con PostgreSQL.
+Questa guida mostra come eseguire gli script SQL del corso con PostgreSQL in Docker.
 
-## Opzione Consigliata: Docker
+L'ambiente standard del laboratorio è il container `rdsql-postgres` definito in `docker-compose.yml`. Non è necessario installare PostgreSQL localmente.
 
-Avviare PostgreSQL:
+## Avviare PostgreSQL In Docker
+
+Dalla cartella principale della repository:
 
 ```bash
-docker run --name rdsql-postgres \
-  -e POSTGRES_USER=training \
-  -e POSTGRES_PASSWORD=training \
-  -e POSTGRES_DB=training \
-  -p 5432:5432 \
-  -d postgres:16
+docker compose up -d postgres
 ```
 
-Entrare nel database:
+Controllare che il container sia attivo:
+
+```bash
+docker compose ps
+```
+
+Se il comando `docker compose` non è disponibile, aggiornare Docker Desktop o Docker Engine prima del laboratorio.
+
+## Entrare Nel Database
 
 ```bash
 docker exec -it rdsql-postgres psql -U training -d training
@@ -67,32 +72,28 @@ docker exec -i rdsql-postgres psql -U training -d training < sql/02_labs.sql
 Fermare PostgreSQL:
 
 ```bash
-docker stop rdsql-postgres
+docker compose stop postgres
 ```
 
 Riavviarlo:
 
 ```bash
-docker start rdsql-postgres
+docker compose up -d postgres
 ```
 
-Rimuoverlo completamente:
+Rimuovere container e dati di laboratorio:
 
 ```bash
-docker rm -f rdsql-postgres
+docker compose down -v
 ```
 
 ## Problemi Comuni
 
-Se la porta `5432` è occupata, usare una porta locale diversa:
+Se la porta `5432` è occupata, modificare la riga `5432:5432` in `docker-compose.yml`, ad esempio:
 
-```bash
-docker run --name rdsql-postgres \
-  -e POSTGRES_USER=training \
-  -e POSTGRES_PASSWORD=training \
-  -e POSTGRES_DB=training \
-  -p 15432:5432 \
-  -d postgres:16
+```yaml
+ports:
+  - "15432:5432"
 ```
 
 Se compare `relation does not exist`, controllare di avere caricato lo schema e di usare:
@@ -100,4 +101,3 @@ Se compare `relation does not exist`, controllare di avere caricato lo schema e 
 ```sql
 SET search_path TO training;
 ```
-

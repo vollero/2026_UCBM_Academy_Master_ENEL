@@ -2,7 +2,7 @@
 
 Materiale del corso **Relational Databases & SQL** per il Master ENEL 2026.
 
-Qui trovate slide, attività pratiche, esercitazioni SQL e script per lavorare con PostgreSQL.
+Qui trovate slide, attività pratiche, esercitazioni SQL e script per lavorare con PostgreSQL in Docker.
 
 ## Da Dove Iniziare
 
@@ -17,6 +17,7 @@ Qui trovate slide, attività pratiche, esercitazioni SQL e script per lavorare c
 - `activities/`: tracce, handout, esercitazioni Docker, file Markdown e script SQL.
 - `sql/`: schema dati e script SQL generali del laboratorio.
 - `docs/`: guida studenti, setup laboratorio e indice dei materiali.
+- `docker-compose.yml`: ambiente Docker standard del laboratorio.
 
 ## Percorso Del Corso
 
@@ -37,17 +38,22 @@ Qui trovate slide, attività pratiche, esercitazioni SQL e script per lavorare c
 
 ## Laboratorio SQL
 
-Per caricare il database di laboratorio in PostgreSQL:
+Il laboratorio SQL usa PostgreSQL in Docker. Per avviare il container:
 
 ```bash
-psql -d sql_training -f sql/01_schema_seed_postgres.sql
+docker compose up -d postgres
 ```
 
-Se usate Docker, seguite [docs/setup-laboratorio.md](docs/setup-laboratorio.md).
+Per caricare il database di laboratorio:
+
+```bash
+docker exec -i rdsql-postgres psql -U training -d training < sql/01_schema_seed_postgres.sql
+```
+
+La procedura completa è in [docs/setup-laboratorio.md](docs/setup-laboratorio.md).
 
 ## Indice Completo
 
 L'elenco dei materiali principali è in [docs/indice-materiali.md](docs/indice-materiali.md).
 
 Il file `manifest/materials.tsv` è un elenco tecnico dei file presenti nella repository.
-

@@ -16,7 +16,7 @@ Alcune query di report sono lente. Il compito non è creare molti indici, ma pro
 4. misurare di nuovo e decidere se l'indice è difendibile.
 
 ## 4. Implementazione completa o artefatto atteso
-Soluzione caricabile in PostgreSQL dopo lo schema di laboratorio.
+Soluzione caricabile nel container PostgreSQL Docker dopo lo schema di laboratorio.
 
 ```sql
 SET search_path TO training;
