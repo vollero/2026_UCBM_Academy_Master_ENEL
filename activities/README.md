@@ -1,0 +1,53 @@
+# Attività pratiche
+
+Questa cartella contiene le attività pratiche del corso, separate dalle slide.
+
+Ogni blocco 30-90 ha una cartella dedicata. La struttura della pratica è uniforme:
+
+1. problema in forma informale;
+2. specifica corretta del problema;
+3. definizione della soluzione;
+4. implementazione completa o artefatto atteso;
+5. criteri di verifica e checkpoint.
+
+File disponibili per ogni blocco:
+
+- `activity.md`: traccia pratica da dare agli studenti;
+- `solution.md`: soluzione o soluzione guidata per il docente;
+- `<blocco>_activity.pdf`: PDF attività con traccia, suggerimenti e soluzione;
+- `solution.sql`: query soluzione caricabili nel DBMS per i blocchi 4-12;
+- slide descrittive e solutive nel PDF del blocco corrispondente.
+
+Materiale aggiuntivo disponibile:
+
+- `block03_normalizzazione_schema/casi_studio.md`: casi di studio per discussione guidata sul blocco 3;
+- `block03_normalizzazione_schema/block03_normalizzazione_schema_casi_studio_handout.pdf`: handout con tracce, suggerimenti e soluzioni.
+- `block03_normalizzazione_schema/postgresql_docker.md`: guida operativa per avviare PostgreSQL in Docker e interagire con il container;
+- `block03_normalizzazione_schema/block03_normalizzazione_schema_postgresql_docker.pdf`: PDF della guida Docker/PostgreSQL del blocco 3;
+- `block03_normalizzazione_schema/postgresql_docker_test.sql`: script SQL per creazione tabelle, dati e query di controllo nel container;
+- `block04_select_sql_base/introduzione_sql.md`: introduzione progressiva alla sintassi SQL del blocco 4;
+- `block04_select_sql_base/block04_select_sql_base_introduzione_sql_handout.pdf`: handout con sintassi, esempi e soluzioni;
+- `block04_select_sql_base/introduzione_sql_examples.sql`: esempi SQL eseguibili sullo schema di laboratorio.
+- `block05_join_cardinalita/introduzione_join.md`: introduzione progressiva a `JOIN`, cardinalità e fan-out;
+- `block05_join_cardinalita/block05_join_cardinalita_introduzione_join_handout.pdf`: handout con sintassi, esempi e soluzioni sui JOIN;
+- `block05_join_cardinalita/introduzione_join_examples.sql`: esempi SQL eseguibili per il blocco 5.
+
+## Indice
+
+| Blocco | Tema | PDF attività | Traccia | Soluzione | SQL |
+| --- | --- | --- | --- | --- | --- |
+| 1 | Dalla tabella singola alle relazioni | `block01_dominio_relazioni/block01_dominio_relazioni_activity.pdf` | `block01_dominio_relazioni/activity.md` | `block01_dominio_relazioni/solution.md` | - |
+| 2 | Chiavi, domini e integrità | `block02_chiavi_vincoli_integrita/block02_chiavi_vincoli_integrita_activity.pdf` | `block02_chiavi_vincoli_integrita/activity.md` | `block02_chiavi_vincoli_integrita/solution.md` | - |
+| 3 | Normalizzazione e schema | `block03_normalizzazione_schema/block03_normalizzazione_schema_activity.pdf` | `block03_normalizzazione_schema/activity.md` | `block03_normalizzazione_schema/solution.md` | - |
+| 4 | Prime query SQL | `block04_select_sql_base/block04_select_sql_base_activity.pdf` | `block04_select_sql_base/activity.md` | `block04_select_sql_base/solution.md` | `block04_select_sql_base/solution.sql` |
+| 5 | JOIN e cardinalità | `block05_join_cardinalita/block05_join_cardinalita_activity.pdf` | `block05_join_cardinalita/activity.md` | `block05_join_cardinalita/solution.md` | `block05_join_cardinalita/solution.sql` |
+| 6 | Aggregazioni e KPI | `block06_aggregazioni_kpi/block06_aggregazioni_kpi_activity.pdf` | `block06_aggregazioni_kpi/activity.md` | `block06_aggregazioni_kpi/solution.md` | `block06_aggregazioni_kpi/solution.sql` |
+| 7 | DDL, DML e transazioni | `block07_ddl_dml_transazioni/block07_ddl_dml_transazioni_activity.pdf` | `block07_ddl_dml_transazioni/activity.md` | `block07_ddl_dml_transazioni/solution.md` | `block07_ddl_dml_transazioni/solution.sql` |
+| 8 | Subquery e logica insiemistica | `block08_subquery_set_logic/block08_subquery_set_logic_activity.pdf` | `block08_subquery_set_logic/activity.md` | `block08_subquery_set_logic/solution.md` | `block08_subquery_set_logic/solution.sql` |
+| 9 | CTE, viste e mantenibilità | `block09_cte_viste_mantenibilita/block09_cte_viste_mantenibilita_activity.pdf` | `block09_cte_viste_mantenibilita/activity.md` | `block09_cte_viste_mantenibilita/solution.md` | `block09_cte_viste_mantenibilita/solution.sql` |
+| 10 | Window function | `block10_window_functions/block10_window_functions_activity.pdf` | `block10_window_functions/activity.md` | `block10_window_functions/solution.md` | `block10_window_functions/solution.sql` |
+| 11 | Performance, EXPLAIN e indici | `block11_performance_explain_indici/block11_performance_explain_indici_activity.pdf` | `block11_performance_explain_indici/activity.md` | `block11_performance_explain_indici/solution.md` | `block11_performance_explain_indici/solution.sql` |
+| 12 | Capstone | `block12_capstone_query_design/block12_capstone_query_design_activity.pdf` | `block12_capstone_query_design/activity.md` | `block12_capstone_query_design/solution.md` | `block12_capstone_query_design/solution.sql` |
+
+Le soluzioni SQL complete eseguibili sono anche raccolte in `../sql/03_solutions.sql`.
+Per caricare schema, dati e tutte le soluzioni in una volta usare `../sql/00_schema_and_all_solutions_postgres.sql`.

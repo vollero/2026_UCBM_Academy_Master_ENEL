@@ -1,0 +1,70 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+repo_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+missing=0
+
+require_file() {
+  local path="$1"
+  if [[ ! -f "$repo_root/$path" ]]; then
+    echo "Manca: $path" >&2
+    missing=1
+  fi
+}
+
+while IFS= read -r path; do
+  [[ -z "$path" ]] && continue
+  require_file "$path"
+done <<'EOF'
+README.md
+docs/workflow-docente.md
+docs/source-material-index.md
+manifest/materials.tsv
+slides/blocks/block01_dominio_relazioni/block01_dominio_relazioni.pdf
+slides/blocks/block02_chiavi_vincoli_integrita/block02_chiavi_vincoli_integrita.pdf
+slides/blocks/block03_normalizzazione_schema/block03_normalizzazione_schema.pdf
+slides/blocks/block03_normalizzazione_schema/block03_normalizzazione_schema_casi_studio.pdf
+slides/blocks/block04_select_sql_base/block04_select_sql_base.pdf
+slides/blocks/block04_select_sql_base/block04_select_sql_base_introduzione_sql.pdf
+slides/blocks/block05_join_cardinalita/block05_join_cardinalita.pdf
+slides/blocks/block05_join_cardinalita/block05_join_cardinalita_introduzione_join.pdf
+slides/blocks/block06_aggregazioni_kpi/block06_aggregazioni_kpi.pdf
+slides/blocks/block07_ddl_dml_transazioni/block07_ddl_dml_transazioni.pdf
+slides/blocks/block08_subquery_set_logic/block08_subquery_set_logic.pdf
+slides/blocks/block09_cte_viste_mantenibilita/block09_cte_viste_mantenibilita.pdf
+slides/blocks/block10_window_functions/block10_window_functions.pdf
+slides/blocks/block11_performance_explain_indici/block11_performance_explain_indici.pdf
+slides/blocks/block12_capstone_query_design/block12_capstone_query_design.pdf
+activities/README.md
+activities/block01_dominio_relazioni/block01_dominio_relazioni_activity.pdf
+activities/block02_chiavi_vincoli_integrita/block02_chiavi_vincoli_integrita_activity.pdf
+activities/block03_normalizzazione_schema/block03_normalizzazione_schema_activity.pdf
+activities/block03_normalizzazione_schema/block03_normalizzazione_schema_casi_studio_handout.pdf
+activities/block03_normalizzazione_schema/block03_normalizzazione_schema_postgresql_docker.pdf
+activities/block03_normalizzazione_schema/postgresql_docker_test.sql
+activities/block04_select_sql_base/block04_select_sql_base_activity.pdf
+activities/block04_select_sql_base/block04_select_sql_base_introduzione_sql_handout.pdf
+activities/block04_select_sql_base/introduzione_sql_examples.sql
+activities/block05_join_cardinalita/block05_join_cardinalita_activity.pdf
+activities/block05_join_cardinalita/block05_join_cardinalita_introduzione_join_handout.pdf
+activities/block05_join_cardinalita/introduzione_join_examples.sql
+activities/block06_aggregazioni_kpi/block06_aggregazioni_kpi_activity.pdf
+activities/block07_ddl_dml_transazioni/block07_ddl_dml_transazioni_activity.pdf
+activities/block08_subquery_set_logic/block08_subquery_set_logic_activity.pdf
+activities/block09_cte_viste_mantenibilita/block09_cte_viste_mantenibilita_activity.pdf
+activities/block10_window_functions/block10_window_functions_activity.pdf
+activities/block11_performance_explain_indici/block11_performance_explain_indici_activity.pdf
+activities/block12_capstone_query_design/block12_capstone_query_design_activity.pdf
+sql/00_schema_and_all_solutions_postgres.sql
+sql/01_schema_seed_postgres.sql
+sql/02_labs.sql
+sql/03_solutions.sql
+EOF
+
+if [[ "$missing" -ne 0 ]]; then
+  echo "Verifica fallita." >&2
+  exit 1
+fi
+
+echo "Verifica completata: materiali minimi presenti."
+
