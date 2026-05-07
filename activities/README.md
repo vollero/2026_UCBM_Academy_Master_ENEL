@@ -31,6 +31,18 @@ Materiale aggiuntivo disponibile:
 - `block05_join_cardinalita/introduzione_join.md`: introduzione progressiva a `JOIN`, cardinalità e fan-out;
 - `block05_join_cardinalita/block05_join_cardinalita_introduzione_join_handout.pdf`: handout con sintassi, esempi e soluzioni sui JOIN;
 - `block05_join_cardinalita/introduzione_join_examples.sql`: esempi SQL eseguibili per il blocco 5.
+- `block04_select_sql_base/docker_exercises.md`: esercitazioni Docker su `SELECT`, filtri, ordinamento e `CASE`;
+- `block05_join_cardinalita/docker_exercises.md`: esercitazioni Docker su `JOIN`, `LEFT JOIN` e fan-out;
+- `block06_aggregazioni_kpi/introduzione_aggregazioni.md`: introduzione progressiva ad aggregazioni e KPI;
+- `block06_aggregazioni_kpi/docker_exercises.md`: esercitazioni Docker su `GROUP BY`, KPI e `HAVING`;
+- `block07_ddl_dml_transazioni/introduzione_ddl_dml.md`: introduzione progressiva a DDL, DML e transazioni;
+- `block07_ddl_dml_transazioni/docker_exercises.md`: esercitazioni Docker su modifiche controllate e transazioni;
+- `block08_subquery_set_logic/introduzione_subquery.md`: introduzione progressiva a subquery e logica insiemistica;
+- `block08_subquery_set_logic/docker_exercises.md`: esercitazioni Docker su `EXISTS`, `NOT EXISTS` ed `EXCEPT`;
+- `block09_cte_viste_mantenibilita/introduzione_cte_viste.md`: introduzione progressiva a CTE e viste;
+- `block10_window_functions/introduzione_window.md`: introduzione progressiva alle window function;
+- `block11_performance_explain_indici/introduzione_performance.md`: introduzione progressiva a performance, `EXPLAIN` e indici;
+- `block12_capstone_query_design/introduzione_capstone.md`: introduzione progressiva al capstone query design.
 
 ## Indice
 

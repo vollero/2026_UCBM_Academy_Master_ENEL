@@ -29,6 +29,18 @@ La sequenza è model-first e procede sempre da una rappresentazione semplice ver
 - `slides/blocks/block05_join_cardinalita/block05_join_cardinalita_introduzione_join.pdf`: introduzione progressiva ai JOIN per il blocco 5.
 - `activities/block05_join_cardinalita/block05_join_cardinalita_introduzione_join_handout.pdf`: handout dell'introduzione ai JOIN del blocco 5.
 - `activities/block05_join_cardinalita/introduzione_join_examples.sql`: esempi SQL eseguibili per l'introduzione ai JOIN del blocco 5.
+- `slides/blocks/block06_aggregazioni_kpi/block06_aggregazioni_kpi_introduzione_aggregazioni.pdf`: introduzione progressiva ad aggregazioni e KPI.
+- `slides/blocks/block07_ddl_dml_transazioni/block07_ddl_dml_transazioni_introduzione_ddl_dml.pdf`: introduzione progressiva a DDL, DML e transazioni.
+- `slides/blocks/block08_subquery_set_logic/block08_subquery_set_logic_introduzione_subquery.pdf`: introduzione progressiva a subquery e logica insiemistica.
+- `slides/blocks/block09_cte_viste_mantenibilita/block09_cte_viste_mantenibilita_introduzione_cte_viste.pdf`: introduzione progressiva a CTE e viste.
+- `slides/blocks/block10_window_functions/block10_window_functions_introduzione_window.pdf`: introduzione progressiva alle window function.
+- `slides/blocks/block11_performance_explain_indici/block11_performance_explain_indici_introduzione_performance.pdf`: introduzione progressiva a performance, EXPLAIN e indici.
+- `slides/blocks/block12_capstone_query_design/block12_capstone_query_design_introduzione_capstone.pdf`: introduzione progressiva al capstone query design.
+- `activities/block04_select_sql_base/block04_select_sql_base_docker_exercises.pdf`: esercitazioni Docker per il blocco 4.
+- `activities/block05_join_cardinalita/block05_join_cardinalita_docker_exercises.pdf`: esercitazioni Docker per il blocco 5.
+- `activities/block06_aggregazioni_kpi/block06_aggregazioni_kpi_docker_exercises.pdf`: esercitazioni Docker per il blocco 6.
+- `activities/block07_ddl_dml_transazioni/block07_ddl_dml_transazioni_docker_exercises.pdf`: esercitazioni Docker per il blocco 7.
+- `activities/block08_subquery_set_logic/block08_subquery_set_logic_docker_exercises.pdf`: esercitazioni Docker per il blocco 8.
 - `activities/common/activity_preamble.tex`: stile condiviso dei PDF attività.
 - `sql/00_schema_and_all_solutions_postgres.sql`: script unico con schema, dati e tutte le query soluzione.
 - `sql/01_schema_seed_postgres.sql`: schema e dati di laboratorio per PostgreSQL.
