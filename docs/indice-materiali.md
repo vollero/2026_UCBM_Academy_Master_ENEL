@@ -43,4 +43,5 @@ Per ogni blocco sono presenti:
 ## Ambiente Docker
 
 - `docker-compose.yml`: container PostgreSQL standard del laboratorio;
-- `docs/setup-laboratorio.md`: istruzioni per avviare il container, caricare lo schema ed eseguire gli script.
+- `docs/setup-laboratorio.md`: istruzioni per avviare il container, caricare lo schema ed eseguire gli script;
+- `docs/comandi-laboratorio-docker.md`: comandi rapidi per gestione container, `psql`, esercitazioni e soluzioni.

@@ -10,6 +10,7 @@ Qui trovate slide, attività pratiche, esercitazioni SQL e script per lavorare c
 2. Aprite le slide del blocco in `slides/blocks/`.
 3. Usate il PDF attività corrispondente in `activities/<blocco>/`.
 4. Per le esercitazioni SQL, preparate PostgreSQL seguendo [docs/setup-laboratorio.md](docs/setup-laboratorio.md).
+5. Per i comandi da copiare e incollare in aula, usate [docs/comandi-laboratorio-docker.md](docs/comandi-laboratorio-docker.md).
 
 ## Organizzazione
 
@@ -51,6 +52,8 @@ docker exec -i rdsql-postgres psql -U training -d training < sql/01_schema_seed_
 ```
 
 La procedura completa è in [docs/setup-laboratorio.md](docs/setup-laboratorio.md).
+
+I comandi rapidi per gestione container, `psql`, esercitazioni e soluzioni sono in [docs/comandi-laboratorio-docker.md](docs/comandi-laboratorio-docker.md).
 
 ## Indice Completo
 

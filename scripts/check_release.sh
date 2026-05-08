@@ -21,6 +21,7 @@ docker-compose.yml
 docs/guida-studenti.md
 docs/setup-laboratorio.md
 docs/indice-materiali.md
+docs/comandi-laboratorio-docker.md
 manifest/materials.tsv
 slides/blocks/block01_dominio_relazioni/block01_dominio_relazioni.pdf
 slides/blocks/block02_chiavi_vincoli_integrita/block02_chiavi_vincoli_integrita.pdf

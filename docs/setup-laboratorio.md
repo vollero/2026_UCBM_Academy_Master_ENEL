@@ -4,6 +4,8 @@ Questa guida mostra come eseguire gli script SQL del corso con PostgreSQL in Doc
 
 L'ambiente standard del laboratorio è il container `rdsql-postgres` definito in `docker-compose.yml`. Non è necessario installare PostgreSQL localmente.
 
+Per una lista compatta di comandi da copiare e incollare durante il laboratorio, vedere [comandi-laboratorio-docker.md](comandi-laboratorio-docker.md).
+
 ## Avviare PostgreSQL In Docker
 
 Dalla cartella principale della repository:

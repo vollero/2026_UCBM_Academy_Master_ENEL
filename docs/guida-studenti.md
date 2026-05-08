@@ -21,6 +21,7 @@ Per ogni blocco:
 - Soluzioni e script SQL: disponibili nelle cartelle `activities/<blocco>/` quando previsti
 - Script generali di laboratorio: `sql/`
 - Ambiente Docker del laboratorio: `docker-compose.yml`
+- Comandi rapidi Docker/PostgreSQL: `docs/comandi-laboratorio-docker.md`
 
 ## Materiali Aggiuntivi
 
@@ -37,6 +38,8 @@ Alcuni blocchi includono anche materiali introduttivi o casi studio:
 Il laboratorio del corso usa PostgreSQL in Docker. Non serve installare PostgreSQL direttamente sul computer: serve Docker avviato e il container definito in `docker-compose.yml`.
 
 La procedura è descritta in [setup-laboratorio.md](setup-laboratorio.md).
+
+Per copia/incolla rapido durante il laboratorio usate [comandi-laboratorio-docker.md](comandi-laboratorio-docker.md).
 
 ## Convenzioni Usate Nel Corso
 
