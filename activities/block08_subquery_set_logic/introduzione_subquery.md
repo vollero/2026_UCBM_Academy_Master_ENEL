@@ -24,6 +24,20 @@ WHERE EXISTS (
 - Una subquery correlata usa colonne della query esterna.
 - `UNION`, `INTERSECT`, `EXCEPT` combinano insiemi compatibili.
 
+## Tradurre la frase in quantificatore
+
+- "almeno un ordine" porta naturalmente a `EXISTS`;
+- "nessun ordine" porta naturalmente a `NOT EXISTS`;
+- "sopra la media" richiede una subquery scalare;
+- "presente in A ma non in B" può essere espresso con `EXCEPT`.
+
+## Subquery correlata e non correlata
+
+- Una subquery non correlata non dipende dalla riga esterna.
+- Una subquery correlata usa una colonna della query esterna.
+- La query esterna resta responsabile della granularità finale.
+- `NOT EXISTS` è spesso più robusto di `NOT IN` quando possono comparire `NULL`.
+
     ## Prodotti mai venduti
 
 ```sql
@@ -65,6 +79,34 @@ EXCEPT
 SELECT customer_id
 FROM orders
 ORDER BY customer_id;
+```
+
+## Subquery scalare
+
+```sql
+SELECT product_id, sku, product_name, unit_price
+FROM products
+WHERE unit_price > (
+  SELECT avg(unit_price)
+  FROM products
+  WHERE active = true
+)
+ORDER BY unit_price DESC;
+```
+
+## Ordini senza pagamento catturato
+
+```sql
+SELECT o.order_id, o.order_date, o.status
+FROM orders AS o
+WHERE o.status <> 'cancelled'
+  AND NOT EXISTS (
+    SELECT 1
+    FROM payments AS p
+    WHERE p.order_id = o.order_id
+      AND p.status = 'captured'
+  )
+ORDER BY o.order_id;
 ```
 
     ## Esercizio con rappresentazione tabellare

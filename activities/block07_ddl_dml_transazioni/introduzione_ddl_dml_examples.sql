@@ -10,6 +10,7 @@ CREATE TABLE IF NOT EXISTS product_price_audit (
   product_id integer NOT NULL REFERENCES products(product_id),
   old_price numeric(10, 2) NOT NULL,
   new_price numeric(10, 2) NOT NULL,
+  reason text NOT NULL DEFAULT 'not specified',
   changed_at timestamp NOT NULL DEFAULT now()
 );
 
@@ -33,6 +34,22 @@ BEGIN;
 
 INSERT INTO products (product_id, sku, product_name, category, unit_price, active)
 VALUES (1000, 'LAB-SVC', 'Laboratory Service', 'services', 250.00, true)
+RETURNING product_id, sku, product_name;
+
+ROLLBACK;
+
+-- 4. Cancellazione controllata
+BEGIN;
+
+INSERT INTO products (product_id, sku, product_name, category, unit_price, active)
+VALUES (1001, 'LAB-DEL', 'Temporary Product', 'services', 10.00, true);
+
+SELECT product_id, sku
+FROM products
+WHERE sku = 'LAB-DEL';
+
+DELETE FROM products
+WHERE sku = 'LAB-DEL'
 RETURNING product_id, sku, product_name;
 
 ROLLBACK;

@@ -37,3 +37,25 @@ EXCEPT
 SELECT customer_id
 FROM orders
 ORDER BY customer_id;
+
+-- 4. Subquery scalare: prodotti sopra il prezzo medio
+SELECT product_id, sku, product_name, unit_price
+FROM products
+WHERE unit_price > (
+  SELECT avg(unit_price)
+  FROM products
+  WHERE active = true
+)
+ORDER BY unit_price DESC;
+
+-- 5. Ordini senza pagamento catturato
+SELECT o.order_id, o.order_date, o.status
+FROM orders AS o
+WHERE o.status <> 'cancelled'
+  AND NOT EXISTS (
+    SELECT 1
+    FROM payments AS p
+    WHERE p.order_id = o.order_id
+      AND p.status = 'captured'
+  )
+ORDER BY o.order_id;

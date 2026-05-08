@@ -27,6 +27,23 @@ ROLLBACK;
 - `DELETE` cancella righe.
 - `BEGIN`, `COMMIT`, `ROLLBACK` delimitano una transazione.
 
+## Ciclo sicuro di una modifica
+
+1. Leggere le righe candidate con una `SELECT`.
+2. Controllare conteggio e valori.
+3. Aprire una transazione con `BEGIN`.
+4. Eseguire `INSERT`, `UPDATE` o `DELETE`.
+5. Usare `RETURNING` per vedere cosa è cambiato.
+6. Concludere con `ROLLBACK` in test o `COMMIT` se la modifica deve restare.
+
+## DDL: progettare prima di creare
+
+- Il tipo della colonna limita i valori ammessi.
+- `PRIMARY KEY` identifica una riga.
+- `REFERENCES` mantiene il collegamento con una tabella padre.
+- `CHECK` rende esplicite regole di dominio.
+- `DEFAULT` assegna un valore quando l'utente non lo specifica.
+
     ## Creare una tabella di audit
 
 ```sql
@@ -35,6 +52,7 @@ CREATE TABLE IF NOT EXISTS product_price_audit (
   product_id integer NOT NULL REFERENCES products(product_id),
   old_price numeric(10, 2) NOT NULL,
   new_price numeric(10, 2) NOT NULL,
+  reason text NOT NULL DEFAULT 'not specified',
   changed_at timestamp NOT NULL DEFAULT now()
 );
 ```
@@ -64,6 +82,22 @@ BEGIN;
 
 INSERT INTO products (product_id, sku, product_name, category, unit_price, active)
 VALUES (1000, 'LAB-SVC', 'Laboratory Service', 'services', 250.00, true)
+RETURNING product_id, sku, product_name;
+
+ROLLBACK;
+```
+
+## Cancellazione controllata
+
+```sql
+BEGIN;
+
+SELECT product_id, sku
+FROM products
+WHERE sku = 'LAB-SVC';
+
+DELETE FROM products
+WHERE sku = 'LAB-SVC'
 RETURNING product_id, sku, product_name;
 
 ROLLBACK;
