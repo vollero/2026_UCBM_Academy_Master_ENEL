@@ -6,6 +6,8 @@ L'ambiente standard del laboratorio è il container `rdsql-postgres` definito in
 
 Per una lista compatta di comandi da copiare e incollare durante il laboratorio, vedere [comandi-laboratorio-docker.md](comandi-laboratorio-docker.md).
 
+Per una raccolta di query SQL pronte per cancellazione, creazione, inserimento, `JOIN` e raggruppamenti, vedere [query-copia-incolla.md](query-copia-incolla.md).
+
 ## Avviare PostgreSQL In Docker
 
 Dalla cartella principale della repository:

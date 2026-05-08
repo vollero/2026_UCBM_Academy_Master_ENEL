@@ -22,6 +22,7 @@ docs/guida-studenti.md
 docs/setup-laboratorio.md
 docs/indice-materiali.md
 docs/comandi-laboratorio-docker.md
+docs/query-copia-incolla.md
 manifest/materials.tsv
 slides/blocks/block01_dominio_relazioni/block01_dominio_relazioni.pdf
 slides/blocks/block02_chiavi_vincoli_integrita/block02_chiavi_vincoli_integrita.pdf
@@ -93,6 +94,7 @@ sql/00_schema_and_all_solutions_postgres.sql
 sql/01_schema_seed_postgres.sql
 sql/02_labs.sql
 sql/03_solutions.sql
+sql/query_copia_incolla.sql
 EOF
 
 if [[ "$missing" -ne 0 ]]; then

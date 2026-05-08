@@ -88,6 +88,20 @@ SELECT COUNT(*) FROM sale_items;
 docker exec -i rdsql-postgres psql -U training -d training < sql/02_labs.sql
 ```
 
+## Eseguire La Raccolta Query Copia/Incolla
+
+Il documento di riferimento è [query-copia-incolla.md](query-copia-incolla.md). Lo script crea un database demo separato, `query_copy_paste_lab`.
+
+```bash
+docker exec -i rdsql-postgres psql -U training -d postgres < sql/query_copia_incolla.sql
+```
+
+Entrare nel database demo:
+
+```bash
+docker exec -it rdsql-postgres psql -U training -d query_copy_paste_lab
+```
+
 ## Eseguire Tutte Le Soluzioni SQL
 
 ```bash

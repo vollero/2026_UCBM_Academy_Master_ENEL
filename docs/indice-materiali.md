@@ -38,7 +38,9 @@ Per ogni blocco sono presenti:
 - `sql/01_schema_seed_postgres.sql`: schema e dati di laboratorio;
 - `sql/02_labs.sql`: tracce SQL operative;
 - `sql/03_solutions.sql`: soluzioni SQL;
-- `sql/00_schema_and_all_solutions_postgres.sql`: schema, dati e soluzioni in un unico script.
+- `sql/00_schema_and_all_solutions_postgres.sql`: schema, dati e soluzioni in un unico script;
+- `sql/query_copia_incolla.sql`: script demo con cancellazione, creazione, inserimenti, `JOIN` e raggruppamenti;
+- `docs/query-copia-incolla.md`: documento con query SQL pronte per copia/incolla.
 
 ## Ambiente Docker
 

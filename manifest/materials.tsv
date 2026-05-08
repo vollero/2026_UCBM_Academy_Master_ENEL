@@ -1,7 +1,7 @@
 # Elenco tecnico dei materiali della repository
-# Generated at: 2026-05-08T08:57:19+02:00
+# Generated at: 2026-05-08T10:59:24+02:00
 path	bytes
-README.md	2233
+README.md	2454
 activities/README.md	6692
 activities/block01_dominio_relazioni/activity.md	2264
 activities/block01_dominio_relazioni/block01_dominio_relazioni_activity.pdf	134443
@@ -96,10 +96,11 @@ activities/block12_capstone_query_design/introduzione_capstone_examples.sql	1454
 activities/block12_capstone_query_design/solution.md	2305
 activities/block12_capstone_query_design/solution.sql	1401
 docker-compose.yml	319
-docs/comandi-laboratorio-docker.md	8202
-docs/guida-studenti.md	2327
-docs/indice-materiali.md	2276
-docs/setup-laboratorio.md	2089
+docs/comandi-laboratorio-docker.md	8610
+docs/guida-studenti.md	2395
+docs/indice-materiali.md	2472
+docs/query-copia-incolla.md	9312
+docs/setup-laboratorio.md	2252
 slides/blocks/block01_dominio_relazioni/block01_dominio_relazioni.pdf	155781
 slides/blocks/block02_chiavi_vincoli_integrita/block02_chiavi_vincoli_integrita.pdf	158225
 slides/blocks/block03_normalizzazione_schema/block03_normalizzazione_schema.pdf	153824
@@ -126,3 +127,4 @@ sql/00_schema_and_all_solutions_postgres.sql	28719
 sql/01_schema_seed_postgres.sql	18477
 sql/02_labs.sql	5536
 sql/03_solutions.sql	10241
+sql/query_copia_incolla.sql	8574

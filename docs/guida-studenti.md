@@ -22,6 +22,7 @@ Per ogni blocco:
 - Script generali di laboratorio: `sql/`
 - Ambiente Docker del laboratorio: `docker-compose.yml`
 - Comandi rapidi Docker/PostgreSQL: `docs/comandi-laboratorio-docker.md`
+- Query SQL pronte per copia/incolla: `docs/query-copia-incolla.md`
 
 ## Materiali Aggiuntivi
 

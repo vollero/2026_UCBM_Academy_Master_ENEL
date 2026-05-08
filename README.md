@@ -19,6 +19,7 @@ Qui trovate slide, attività pratiche, esercitazioni SQL e script per lavorare c
 - `sql/`: schema dati e script SQL generali del laboratorio.
 - `docs/`: guida studenti, setup laboratorio e indice dei materiali.
 - `docker-compose.yml`: ambiente Docker standard del laboratorio.
+- `docs/query-copia-incolla.md`: query SQL pronte per copia/incolla.
 
 ## Percorso Del Corso
 
@@ -54,6 +55,8 @@ docker exec -i rdsql-postgres psql -U training -d training < sql/01_schema_seed_
 La procedura completa è in [docs/setup-laboratorio.md](docs/setup-laboratorio.md).
 
 I comandi rapidi per gestione container, `psql`, esercitazioni e soluzioni sono in [docs/comandi-laboratorio-docker.md](docs/comandi-laboratorio-docker.md).
+
+Le query SQL pronte per cancellazione, creazione, inserimento, `JOIN` e `GROUP BY` sono in [docs/query-copia-incolla.md](docs/query-copia-incolla.md).
 
 ## Indice Completo
 
