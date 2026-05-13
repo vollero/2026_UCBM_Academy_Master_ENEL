@@ -1,5 +1,5 @@
 # Elenco tecnico dei materiali della repository
-# Generated at: 2026-05-13T17:28:22+02:00
+# Generated at: 2026-05-13T19:53:07+02:00
 path	bytes
 README.md	4249
 activities/README.md	8418
@@ -130,10 +130,10 @@ slides/blocks/block09_cte_viste_mantenibilita/block09_cte_viste_mantenibilita.pd
 slides/blocks/block10_window_functions/block10_window_functions.pdf	217504
 slides/blocks/block11_performance_explain_indici/block11_performance_explain_indici.pdf	195331
 slides/blocks/block12_capstone_query_design/block12_capstone_query_design.pdf	194751
-slides/blocks/block13_nosql_fondamenti/block13_nosql_fondamenti.pdf	166810
-slides/blocks/block14_nosql_scenari_modelli/block14_nosql_scenari_modelli.pdf	191619
-slides/blocks/block15_telemetria_mongodb_architettura/block15_telemetria_mongodb_architettura.pdf	193961
-slides/blocks/block16_telemetria_dashboard_capstone/block16_telemetria_dashboard_capstone.pdf	187437
+slides/blocks/block13_nosql_fondamenti/block13_nosql_fondamenti.pdf	165136
+slides/blocks/block14_nosql_scenari_modelli/block14_nosql_scenari_modelli.pdf	189933
+slides/blocks/block15_telemetria_mongodb_architettura/block15_telemetria_mongodb_architettura.pdf	192255
+slides/blocks/block16_telemetria_dashboard_capstone/block16_telemetria_dashboard_capstone.pdf	185673
 sql/00_schema_and_all_solutions_postgres.sql	24607
 sql/01_schema_seed_postgres.sql	18477
 sql/02_labs.sql	5800
