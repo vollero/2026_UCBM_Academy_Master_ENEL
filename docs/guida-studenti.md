@@ -24,6 +24,7 @@ Per ogni blocco:
 - Script generali NoSQL: `nosql/`
 - Ambiente Docker del laboratorio: `docker-compose.yml`
 - Comandi rapidi Docker/PostgreSQL/MongoDB: `docs/comandi-laboratorio-docker.md`
+- Guida operativa piattaforme: `docs/guida-operativa-piattaforme.md`
 - Query SQL pronte per copia/incolla: `docs/query-copia-incolla.md`
 
 ## Materiali Aggiuntivi
@@ -43,6 +44,8 @@ Alcuni blocchi includono anche materiali introduttivi o casi studio:
 Il laboratorio del corso usa PostgreSQL in Docker. Non serve installare PostgreSQL direttamente sul computer: serve Docker avviato e il container definito in `docker-compose.yml`.
 
 La procedura è descritta in [setup-laboratorio.md](setup-laboratorio.md).
+
+Per avvio, stop e interazione controllata con le piattaforme usate [guida-operativa-piattaforme.md](guida-operativa-piattaforme.md).
 
 Per copia/incolla rapido durante il laboratorio usate [comandi-laboratorio-docker.md](comandi-laboratorio-docker.md).
 

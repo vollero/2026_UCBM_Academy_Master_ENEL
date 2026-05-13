@@ -1,7 +1,7 @@
 # Elenco tecnico dei materiali della repository
-# Generated at: 2026-05-13T16:25:25+02:00
+# Generated at: 2026-05-13T17:28:22+02:00
 path	bytes
-README.md	3916
+README.md	4249
 activities/README.md	8418
 activities/block01_dominio_relazioni/activity.md	2264
 activities/block01_dominio_relazioni/block01_dominio_relazioni_activity.pdf	134443
@@ -97,16 +97,17 @@ activities/block16_telemetria_dashboard_capstone/activity.md	1647
 activities/block16_telemetria_dashboard_capstone/block16_telemetria_dashboard_capstone_activity.pdf	157555
 activities/block16_telemetria_dashboard_capstone/solution.js	1912
 activities/block16_telemetria_dashboard_capstone/solution.md	1052
-docker-compose.telemetry.yml	1347
+docker-compose.telemetry.yml	1485
 docker-compose.ticketing.yml	1518
 docker-compose.yml	319
 docs/architettura-telemetria.md	3859
 docs/architettura-ticketing.md	1591
 docs/comandi-laboratorio-docker.md	11222
-docs/guida-studenti.md	3183
-docs/indice-materiali.md	3966
+docs/guida-operativa-piattaforme.md	6552
+docs/guida-studenti.md	3386
+docs/indice-materiali.md	4085
 docs/query-copia-incolla.md	9312
-docs/setup-laboratorio.md	4160
+docs/setup-laboratorio.md	4319
 nosql/README.md	746
 nosql/telemetry_collector_tick.js	3846
 nosql/telemetry_dashboard_queries.js	3531

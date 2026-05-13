@@ -23,6 +23,7 @@ docker-compose.telemetry.yml
 docs/guida-studenti.md
 docs/setup-laboratorio.md
 docs/indice-materiali.md
+docs/guida-operativa-piattaforme.md
 docs/comandi-laboratorio-docker.md
 docs/query-copia-incolla.md
 docs/architettura-ticketing.md

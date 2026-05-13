@@ -63,6 +63,7 @@ Per ogni blocco sono presenti:
 - `docker-compose.ticketing.yml`: stack ticketing con PostgreSQL, collector simulato e Metabase;
 - `docker-compose.telemetry.yml`: stack telemetria con MongoDB, collector simulato e mongo-express;
 - `docs/setup-laboratorio.md`: istruzioni per avviare il container, caricare lo schema ed eseguire gli script;
+- `docs/guida-operativa-piattaforme.md`: runbook per avvio, stop e interazione controllata con ticketing e telemetria;
 - `docs/comandi-laboratorio-docker.md`: comandi rapidi per gestione container, `psql`, esercitazioni e soluzioni;
 - `docs/architettura-ticketing.md`: guida specifica per lo stack dei blocchi 9-12;
 - `docs/architettura-telemetria.md`: guida specifica per lo stack NoSQL dei blocchi 15-16.

@@ -28,7 +28,10 @@ services:
       do
         sleep 2;
       done;
-      mongosh --host mongo /nosql/telemetry_schema.js;
+      if ! mongosh --host mongo telemetry --quiet --eval 'db.devices.countDocuments()' | grep -Eq '^[1-9][0-9]*$';
+      then
+        mongosh --host mongo /nosql/telemetry_schema.js;
+      fi;
       while true;
       do
         mongosh --host mongo /nosql/telemetry_collector_tick.js;

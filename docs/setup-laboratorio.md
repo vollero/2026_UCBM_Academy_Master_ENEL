@@ -6,6 +6,8 @@ L'ambiente standard del laboratorio è il container `rdsql-postgres` definito in
 
 Per una lista compatta di comandi da copiare e incollare durante il laboratorio, vedere [comandi-laboratorio-docker.md](comandi-laboratorio-docker.md).
 
+Per avvio, stop e interazione controllata con le piattaforme ticketing e telemetria, vedere [guida-operativa-piattaforme.md](guida-operativa-piattaforme.md).
+
 Per una raccolta di query SQL pronte per cancellazione, creazione, inserimento, `JOIN` e raggruppamenti, vedere [query-copia-incolla.md](query-copia-incolla.md).
 
 Per i blocchi 9-12 è disponibile uno stack dedicato con PostgreSQL, collector simulato e Metabase. La guida è [architettura-ticketing.md](architettura-ticketing.md).
