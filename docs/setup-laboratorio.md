@@ -8,6 +8,8 @@ Per una lista compatta di comandi da copiare e incollare durante il laboratorio,
 
 Per una raccolta di query SQL pronte per cancellazione, creazione, inserimento, `JOIN` e raggruppamenti, vedere [query-copia-incolla.md](query-copia-incolla.md).
 
+Per i blocchi 9-12 è disponibile anche uno stack dedicato con PostgreSQL, collector simulato e Metabase. La guida è [architettura-ticketing.md](architettura-ticketing.md).
+
 ## Avviare PostgreSQL In Docker
 
 Dalla cartella principale della repository:
@@ -104,4 +106,43 @@ Se compare `relation does not exist`, controllare di avere caricato lo schema e 
 
 ```sql
 SET search_path TO training;
+```
+
+## Stack Ticketing Per Blocchi 9-12
+
+Avviare PostgreSQL, collector simulato e Metabase:
+
+```bash
+docker compose -f docker-compose.ticketing.yml up -d
+```
+
+Metabase è disponibile su:
+
+```text
+http://localhost:3000
+```
+
+Per collegare Metabase al database PostgreSQL usare:
+
+```text
+host: postgres
+port: 5432
+database: training
+user: training
+password: training
+```
+
+Per entrare nel PostgreSQL dello stack ticketing:
+
+```bash
+docker exec -it rdsql-ticket-postgres psql -U training -d training
+```
+
+Dentro `psql`:
+
+```sql
+SET search_path TO ticketing;
+\dt
+SELECT count(*) FROM support_tickets;
+SELECT count(*) FROM support_tickets_raw;
 ```

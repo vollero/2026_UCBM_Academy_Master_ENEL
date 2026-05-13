@@ -1,37 +1,41 @@
--- Relational Databases & SQL - soluzione SQL blocco 9
--- Prerequisito: caricare prima ../../sql/01_schema_seed_postgres.sql
--- Target: PostgreSQL 13+
+-- Blocco 9 - Architettura dati containerizzata
+-- Prerequisito: caricare prima lo schema ticketing.
+-- Con lo stack dedicato:
+-- docker exec rdsql-ticket-postgres psql -U training -d training -v ON_ERROR_STOP=1 -f /sql/ticket_architecture_schema.sql
 
-SET search_path TO training;
+SET search_path TO ticketing;
 
-CREATE OR REPLACE VIEW valid_order_revenue AS
-SELECT r.order_id, r.customer_id, r.order_date, r.channel,
-       r.status, r.gross_revenue
-FROM order_revenue r
-WHERE r.status NOT IN ('cancelled', 'refunded');
+SELECT source_id, source_code, description
+FROM ticket_sources
+ORDER BY source_id;
 
-WITH monthly_channel AS (
-    SELECT date_trunc('month', order_date)::date AS month,
-           channel,
-           round(sum(gross_revenue), 2) AS revenue
-    FROM valid_order_revenue
-    GROUP BY month, channel
-)
-SELECT month, channel, revenue
-FROM monthly_channel
-ORDER BY month, channel;
+SELECT count(*) AS raw_events
+FROM support_tickets_raw;
 
+SELECT count(*) AS curated_tickets
+FROM support_tickets;
 
-WITH customer_revenue AS (
-    SELECT customer_id, round(sum(gross_revenue), 2) AS revenue
-    FROM valid_order_revenue
-    GROUP BY customer_id
-), enriched AS (
-    SELECT c.customer_id, c.full_name, c.segment,
-           coalesce(cr.revenue, 0) AS revenue
-    FROM customers c
-    LEFT JOIN customer_revenue cr ON cr.customer_id = c.customer_id
-)
-SELECT *
-FROM enriched
-ORDER BY revenue DESC, customer_id;
+SELECT ticket_id,
+       source_code,
+       external_ticket_id,
+       opened_at,
+       priority,
+       category,
+       region,
+       status,
+       sla_breached
+FROM dashboard_ticket_base
+ORDER BY opened_at
+LIMIT 10;
+
+SELECT day, opened_tickets, resolved_tickets, backlog_delta
+FROM dashboard_daily_flow
+ORDER BY day;
+
+SELECT (SELECT count(*) FROM support_tickets_raw) AS raw_events,
+       (SELECT count(*) FROM support_tickets) AS curated_tickets,
+       (SELECT count(*)
+        FROM support_tickets_raw r
+        LEFT JOIN support_tickets t
+          ON t.external_ticket_id = r.external_ticket_id
+        WHERE t.ticket_id IS NULL) AS raw_without_curated_ticket;

@@ -40,10 +40,15 @@ Per ogni blocco sono presenti:
 - `sql/03_solutions.sql`: soluzioni SQL;
 - `sql/00_schema_and_all_solutions_postgres.sql`: schema, dati e soluzioni in un unico script;
 - `sql/query_copia_incolla.sql`: script demo con cancellazione, creazione, inserimenti, `JOIN` e raggruppamenti;
+- `sql/ticket_architecture_schema.sql`: schema ticketing per i blocchi 9-12;
+- `sql/ticket_architecture_dashboard_queries.sql`: query SQL per dashboard Metabase;
+- `sql/ticket_collector_tick.sql`: inserimento simulato di un nuovo ticket;
 - `docs/query-copia-incolla.md`: documento con query SQL pronte per copia/incolla.
 
 ## Ambiente Docker
 
 - `docker-compose.yml`: container PostgreSQL standard del laboratorio;
+- `docker-compose.ticketing.yml`: stack ticketing con PostgreSQL, collector simulato e Metabase;
 - `docs/setup-laboratorio.md`: istruzioni per avviare il container, caricare lo schema ed eseguire gli script;
-- `docs/comandi-laboratorio-docker.md`: comandi rapidi per gestione container, `psql`, esercitazioni e soluzioni.
+- `docs/comandi-laboratorio-docker.md`: comandi rapidi per gestione container, `psql`, esercitazioni e soluzioni;
+- `docs/architettura-ticketing.md`: guida specifica per lo stack dei blocchi 9-12.

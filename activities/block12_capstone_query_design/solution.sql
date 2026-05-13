@@ -1,41 +1,43 @@
--- Relational Databases & SQL - soluzione SQL blocco 12
--- Prerequisito: caricare prima ../../sql/01_schema_seed_postgres.sql
--- Target: PostgreSQL 13+
+-- Blocco 12 - Capstone architettura DBMS e dashboard
+-- Query principali da usare dopo l'avvio dello stack docker-compose.ticketing.yml
 
-SET search_path TO training;
+SET search_path TO ticketing;
 
-WITH valid_revenue AS (
-    SELECT r.order_id, r.customer_id, r.order_date, r.channel, r.gross_revenue
-    FROM order_revenue r
-    WHERE r.status NOT IN ('cancelled', 'refunded')
-), segment_month AS (
-    SELECT date_trunc('month', v.order_date)::date AS month,
-           c.segment,
-           count(*) AS orders,
-           round(sum(v.gross_revenue), 2) AS revenue
-    FROM valid_revenue v
-    JOIN customers c ON c.customer_id = v.customer_id
-    GROUP BY month, c.segment
-), ranked AS (
-    SELECT month, segment, orders, revenue,
-           rank() OVER (PARTITION BY month ORDER BY revenue DESC, segment) AS segment_rank,
-           round(100 * revenue / sum(revenue) OVER (PARTITION BY month), 2) AS pct_month_revenue
-    FROM segment_month
-)
-SELECT month, segment, orders, revenue, segment_rank, pct_month_revenue
-FROM ranked
-WHERE segment_rank <= 3
-ORDER BY month, segment_rank, segment;
+SELECT count(*) AS tickets
+FROM support_tickets;
 
+SELECT count(*) AS raw_events
+FROM support_tickets_raw;
 
-WITH valid_revenue AS (
-    SELECT * FROM order_revenue
-    WHERE status NOT IN ('cancelled', 'refunded')
-)
-SELECT count(*) AS valid_orders,
-       round(sum(gross_revenue), 2) AS valid_revenue
-FROM valid_revenue;
+SELECT count(*) AS total_tickets,
+       count(*) FILTER (WHERE closed_at IS NULL) AS open_tickets,
+       count(*) FILTER (WHERE closed_at IS NOT NULL) AS closed_tickets,
+       count(*) FILTER (WHERE sla_breached) AS sla_breached_tickets
+FROM dashboard_ticket_base;
 
-SELECT count(*) AS customers,
-       count(DISTINCT customer_id) AS distinct_customers
-FROM customers;
+SELECT day, opened_tickets, resolved_tickets, backlog_delta
+FROM dashboard_daily_flow
+ORDER BY day;
+
+SELECT category,
+       count(*) AS tickets,
+       rank() OVER (ORDER BY count(*) DESC, category) AS category_rank
+FROM dashboard_ticket_base
+GROUP BY category
+ORDER BY category_rank, category;
+
+SELECT ticket_id, source_code, external_ticket_id,
+       opened_at, priority, category, region,
+       customer_segment, channel, subject,
+       sla_due_at, sla_breached
+FROM dashboard_ticket_base
+WHERE closed_at IS NULL
+ORDER BY priority DESC, opened_at;
+
+SELECT (SELECT count(*) FROM support_tickets_raw) AS raw_events,
+       (SELECT count(*) FROM support_tickets) AS curated_tickets,
+       (SELECT count(*)
+        FROM support_tickets_raw r
+        LEFT JOIN support_tickets t
+          ON t.external_ticket_id = r.external_ticket_id
+        WHERE t.ticket_id IS NULL) AS raw_without_curated_ticket;

@@ -1,0 +1,57 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: rdsql-ticket-postgres
+    environment:
+      POSTGRES_USER: training
+      POSTGRES_PASSWORD: training
+      POSTGRES_DB: training
+    ports:
+      - "5433:5432"
+    volumes:
+      - rdsql-ticket-postgres-data:/var/lib/postgresql/data
+      - ./sql:/sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U training -d training"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  ticket-collector:
+    image: postgres:16
+    container_name: rdsql-ticket-collector
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      PGPASSWORD: training
+    volumes:
+      - ./sql:/sql:ro
+    command: >
+      bash -lc "
+      if ! psql -h postgres -U training -d training -tAc \"SELECT to_regclass('ticketing.support_tickets')\" | grep -q support_tickets;
+      then
+        psql -h postgres -U training -d training -v ON_ERROR_STOP=1 -f /sql/ticket_architecture_schema.sql;
+      fi;
+      while true;
+      do
+        psql -h postgres -U training -d training -v ON_ERROR_STOP=1 -f /sql/ticket_collector_tick.sql;
+        sleep 10;
+      done"
+
+  metabase:
+    image: metabase/metabase:latest
+    container_name: rdsql-ticket-metabase
+    depends_on:
+      postgres:
+        condition: service_healthy
+    ports:
+      - "3000:3000"
+    volumes:
+      - rdsql-metabase-data:/metabase-data
+    environment:
+      MB_DB_FILE: /metabase-data/metabase.db
+
+volumes:
+  rdsql-ticket-postgres-data:
+  rdsql-metabase-data:

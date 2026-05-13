@@ -18,7 +18,8 @@ Qui trovate slide, attività pratiche, esercitazioni SQL e script per lavorare c
 - `activities/`: tracce, handout, esercitazioni Docker, file Markdown e script SQL.
 - `sql/`: schema dati e script SQL generali del laboratorio.
 - `docs/`: guida studenti, setup laboratorio e indice dei materiali.
-- `docker-compose.yml`: ambiente Docker standard del laboratorio.
+- `docker-compose.yml`: ambiente Docker standard del laboratorio PostgreSQL.
+- `docker-compose.ticketing.yml`: stack dei blocchi 9-12 con PostgreSQL, collector simulato e Metabase.
 - `docs/query-copia-incolla.md`: query SQL pronte per copia/incolla.
 
 ## Percorso Del Corso
@@ -33,10 +34,10 @@ Qui trovate slide, attività pratiche, esercitazioni SQL e script per lavorare c
 | 6 | Aggregazioni e KPI |
 | 7 | DDL, DML e transazioni |
 | 8 | Subquery e logica insiemistica |
-| 9 | CTE, viste e mantenibilità |
-| 10 | Window function |
-| 11 | Performance, EXPLAIN e indici |
-| 12 | Capstone query design |
+| 9 | Architettura dati containerizzata con DBMS |
+| 10 | Query SQL per dashboard Metabase |
+| 11 | Performance di un DBMS per dashboard |
+| 12 | Capstone architettura DBMS e dashboard |
 
 ## Laboratorio SQL
 
@@ -57,6 +58,14 @@ La procedura completa è in [docs/setup-laboratorio.md](docs/setup-laboratorio.m
 I comandi rapidi per gestione container, `psql`, esercitazioni e soluzioni sono in [docs/comandi-laboratorio-docker.md](docs/comandi-laboratorio-docker.md).
 
 Le query SQL pronte per cancellazione, creazione, inserimento, `JOIN` e `GROUP BY` sono in [docs/query-copia-incolla.md](docs/query-copia-incolla.md).
+
+Per i blocchi 9-12 usate anche lo stack ticketing con PostgreSQL, collector simulato e Metabase:
+
+```bash
+docker compose -f docker-compose.ticketing.yml up -d
+```
+
+La guida dedicata è in [docs/architettura-ticketing.md](docs/architettura-ticketing.md).
 
 ## Indice Completo
 

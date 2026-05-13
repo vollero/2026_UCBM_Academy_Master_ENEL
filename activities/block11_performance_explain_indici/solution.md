@@ -1,53 +1,29 @@
-# Soluzione - Blocco 11 - Performance, EXPLAIN e indici
+# Soluzione - Blocco 11 - Performance di un DBMS per dashboard
 
-## Strategia
-1. scegliere una query rappresentativa;
-2. leggere se il piano fa scan, join costosi o sort espliciti;
-3. disegnare indice su colonne di filtro e ordinamento;
-4. misurare di nuovo e decidere se l'indice è difendibile.
+La soluzione misura una query di dashboard, crea un indice parziale coerente con la definizione di ticket aperto, poi introduce una vista materializzata giornaliera.
 
-## Soluzione completa
-```sql
-SET search_path TO training;
+Caricare prima lo schema nello stack ticketing:
 
-EXPLAIN (ANALYZE, BUFFERS)
-SELECT order_id, customer_id, order_date, status
-FROM orders
-WHERE status = 'completed'
-  AND order_date >= DATE '2025-01-01'
-  AND order_date <  DATE '2025-07-01'
-ORDER BY order_date, order_id;
-
-
-CREATE INDEX IF NOT EXISTS idx_orders_completed_date
-ON orders(order_date, order_id)
-WHERE status = 'completed';
-
-EXPLAIN (ANALYZE, BUFFERS)
-SELECT order_id, customer_id, order_date, status
-FROM orders
-WHERE status = 'completed'
-  AND order_date >= DATE '2025-01-01'
-  AND order_date <  DATE '2025-07-01'
-ORDER BY order_date, order_id;
-
-DROP INDEX IF EXISTS idx_orders_completed_date;
+```bash
+docker exec rdsql-ticket-postgres psql -U training -d training -v ON_ERROR_STOP=1 -f /sql/ticket_architecture_schema.sql
 ```
 
-## Perché la soluzione è corretta
-- ogni indice ha una query che lo giustifica;
-- il piano prima e dopo è confrontato;
-- si spiegano filtri, join e ordinamenti supportati;
-- si riconoscono trade-off e casi in cui l'indice non serve.
+```sql
+SET search_path TO ticketing;
 
-## Errori da discutere
-- creare indici senza una query target;
-- misurare una sola esecuzione e trarre conclusioni definitive;
-- ignorare costi di scrittura e spazio;
-- usare funzioni sulle colonne filtrate rendendo l'indice meno utile;
-- non aggiornare statistiche quando il piano sembra incoerente.
+EXPLAIN (ANALYZE, BUFFERS)
+SELECT ticket_id, opened_at, priority, category, region, status
+FROM support_tickets
+WHERE status IN ('open', 'assigned', 'waiting_customer')
+ORDER BY opened_at DESC, ticket_id DESC;
 
-## Checkpoint
-- performance non significa aggiungere indici a caso;
-- un piano va letto rispetto a una query e a una distribuzione dati;
-- l'indice migliore è quello che risolve un problema reale con costo accettabile.
+CREATE INDEX IF NOT EXISTS idx_ticketing_open_dashboard
+ON support_tickets (opened_at DESC, ticket_id DESC)
+WHERE status IN ('open', 'assigned', 'waiting_customer');
+```
+
+## Perché è corretta
+- l'indice supporta una query reale della dashboard;
+- è parziale, quindi non indicizza ticket chiusi inutili per il drill-down operativo;
+- la materialized view riduce lavoro ripetuto su metriche giornaliere;
+- il controllo raw-curated verifica la pipeline dati.

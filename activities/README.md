@@ -2,7 +2,7 @@
 
 Questa cartella contiene le attività pratiche del corso, separate dalle slide.
 
-Le attività SQL sono pensate per essere eseguite nel container PostgreSQL Docker del corso. Prima dei blocchi SQL avviare il laboratorio con `docker compose up -d postgres` dalla cartella principale della repository.
+Le attività SQL sono pensate per essere eseguite nel container PostgreSQL Docker del corso. Prima dei blocchi SQL 4-8 avviare il laboratorio con `docker compose up -d postgres` dalla cartella principale della repository. Per i blocchi 9-12 usare invece lo stack ticketing con `docker compose -f docker-compose.ticketing.yml up -d`.
 
 Ogni blocco 30-90 ha una cartella dedicata. La struttura della pratica è uniforme:
 
@@ -41,10 +41,9 @@ Materiale aggiuntivo disponibile:
 - `block07_ddl_dml_transazioni/docker_exercises.md`: esercitazioni Docker su modifiche controllate e transazioni;
 - `block08_subquery_set_logic/introduzione_subquery.md`: introduzione progressiva a subquery e logica insiemistica;
 - `block08_subquery_set_logic/docker_exercises.md`: esercitazioni Docker su `EXISTS`, `NOT EXISTS` ed `EXCEPT`;
-- `block09_cte_viste_mantenibilita/introduzione_cte_viste.md`: introduzione progressiva a CTE e viste;
-- `block10_window_functions/introduzione_window.md`: introduzione progressiva alle window function;
-- `block11_performance_explain_indici/introduzione_performance.md`: introduzione progressiva a performance, `EXPLAIN` e indici;
-- `block12_capstone_query_design/introduzione_capstone.md`: introduzione progressiva al capstone query design.
+- `../sql/ticket_architecture_schema.sql`: schema e dati del caso architetturale ticketing per i blocchi 9-12;
+- `../sql/ticket_collector_tick.sql`: simulazione incrementale del sistema di collezionamento;
+- `../sql/ticket_architecture_dashboard_queries.sql`: query SQL pronte per costruire schede e dashboard in Metabase.
 
 ## Indice
 
@@ -58,10 +57,10 @@ Materiale aggiuntivo disponibile:
 | 6 | Aggregazioni e KPI | `block06_aggregazioni_kpi/block06_aggregazioni_kpi_activity.pdf` | `block06_aggregazioni_kpi/activity.md` | `block06_aggregazioni_kpi/solution.md` | `block06_aggregazioni_kpi/solution.sql` |
 | 7 | DDL, DML e transazioni | `block07_ddl_dml_transazioni/block07_ddl_dml_transazioni_activity.pdf` | `block07_ddl_dml_transazioni/activity.md` | `block07_ddl_dml_transazioni/solution.md` | `block07_ddl_dml_transazioni/solution.sql` |
 | 8 | Subquery e logica insiemistica | `block08_subquery_set_logic/block08_subquery_set_logic_activity.pdf` | `block08_subquery_set_logic/activity.md` | `block08_subquery_set_logic/solution.md` | `block08_subquery_set_logic/solution.sql` |
-| 9 | CTE, viste e mantenibilità | `block09_cte_viste_mantenibilita/block09_cte_viste_mantenibilita_activity.pdf` | `block09_cte_viste_mantenibilita/activity.md` | `block09_cte_viste_mantenibilita/solution.md` | `block09_cte_viste_mantenibilita/solution.sql` |
-| 10 | Window function | `block10_window_functions/block10_window_functions_activity.pdf` | `block10_window_functions/activity.md` | `block10_window_functions/solution.md` | `block10_window_functions/solution.sql` |
-| 11 | Performance, EXPLAIN e indici | `block11_performance_explain_indici/block11_performance_explain_indici_activity.pdf` | `block11_performance_explain_indici/activity.md` | `block11_performance_explain_indici/solution.md` | `block11_performance_explain_indici/solution.sql` |
-| 12 | Capstone | `block12_capstone_query_design/block12_capstone_query_design_activity.pdf` | `block12_capstone_query_design/activity.md` | `block12_capstone_query_design/solution.md` | `block12_capstone_query_design/solution.sql` |
+| 9 | Architettura dati containerizzata con DBMS | `block09_cte_viste_mantenibilita/block09_cte_viste_mantenibilita_activity.pdf` | `block09_cte_viste_mantenibilita/activity.md` | `block09_cte_viste_mantenibilita/solution.md` | `block09_cte_viste_mantenibilita/solution.sql` |
+| 10 | Query SQL per dashboard Metabase | `block10_window_functions/block10_window_functions_activity.pdf` | `block10_window_functions/activity.md` | `block10_window_functions/solution.md` | `block10_window_functions/solution.sql` |
+| 11 | Performance di un DBMS per dashboard | `block11_performance_explain_indici/block11_performance_explain_indici_activity.pdf` | `block11_performance_explain_indici/activity.md` | `block11_performance_explain_indici/solution.md` | `block11_performance_explain_indici/solution.sql` |
+| 12 | Capstone architettura DBMS e dashboard | `block12_capstone_query_design/block12_capstone_query_design_activity.pdf` | `block12_capstone_query_design/activity.md` | `block12_capstone_query_design/solution.md` | `block12_capstone_query_design/solution.sql` |
 
-Le soluzioni SQL complete eseguibili sono anche raccolte in `../sql/03_solutions.sql`.
-Per caricare schema, dati e tutte le soluzioni in una volta usare `../sql/00_schema_and_all_solutions_postgres.sql`.
+Le soluzioni SQL dei blocchi 4-8 sono raccolte anche in `../sql/03_solutions.sql`.
+I blocchi 9-12 usano lo schema dedicato `ticketing`: caricare prima `../sql/ticket_architecture_schema.sql`, poi eseguire le soluzioni del blocco o le query dashboard.

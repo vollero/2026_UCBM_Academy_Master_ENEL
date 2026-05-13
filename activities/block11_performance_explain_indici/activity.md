@@ -1,57 +1,57 @@
-# Blocco 11 - Performance, EXPLAIN e indici
+# Blocco 11 - Performance di un DBMS per dashboard
 
 ## 1. Problema in forma informale
-Alcune query di report sono lente. Il compito non è creare molti indici, ma proporre pochi indici motivati e dimostrare che cambiano il piano in modo plausibile.
+La dashboard sui ticket deve restare reattiva mentre il collector inserisce nuove righe. Bisogna misurare una query, proporre indici coerenti e discutere il trade-off tra letture veloci e scritture più costose.
 
 ## 2. Specifica corretta del problema
-- input: query di ricerca ordini, aggregazioni e join frequenti;
-- output: piano prima, indice proposto, piano dopo, commento tecnico;
-- vincolo: ogni indice deve citare la query che supporta;
-- vincolo: non creare indici generici senza ipotesi verificabile.
+- input: schema `ticketing` popolato;
+- output: piano prima, indice proposto, piano dopo, materialized view e controllo raw-curated;
+- vincolo: ogni indice deve avere una query target;
+- vincolo: usare `EXPLAIN (ANALYZE, BUFFERS)`;
+- vincolo: dichiarare quando una vista materializzata può essere non aggiornata.
 
 ## 3. Definizione della soluzione
-1. scegliere una query rappresentativa;
-2. leggere se il piano fa scan, join costosi o sort espliciti;
-3. disegnare indice su colonne di filtro e ordinamento;
-4. misurare di nuovo e decidere se l'indice è difendibile.
+1. caricare lo schema ticketing;
+2. misurare la query dei ticket aperti;
+3. creare un indice parziale sui ticket aperti;
+4. misurare di nuovo;
+5. creare una materialized view giornaliera;
+6. verificare raw event e ticket curati.
 
-## 4. Implementazione completa o artefatto atteso
-Soluzione caricabile nel container PostgreSQL Docker dopo lo schema di laboratorio.
+## 4. Implementazione completa
+Caricare prima lo schema nello stack ticketing:
+
+```bash
+docker exec rdsql-ticket-postgres psql -U training -d training -v ON_ERROR_STOP=1 -f /sql/ticket_architecture_schema.sql
+```
 
 ```sql
-SET search_path TO training;
+SET search_path TO ticketing;
 
 EXPLAIN (ANALYZE, BUFFERS)
-SELECT order_id, customer_id, order_date, status
-FROM orders
-WHERE status = 'completed'
-  AND order_date >= DATE '2025-01-01'
-  AND order_date <  DATE '2025-07-01'
-ORDER BY order_date, order_id;
+SELECT ticket_id, opened_at, priority, category, region, status
+FROM support_tickets
+WHERE status IN ('open', 'assigned', 'waiting_customer')
+  AND opened_at >= TIMESTAMP '2026-05-01'
+  AND opened_at <  TIMESTAMP '2026-05-14'
+ORDER BY opened_at DESC, ticket_id DESC;
 
-
-CREATE INDEX IF NOT EXISTS idx_orders_completed_date
-ON orders(order_date, order_id)
-WHERE status = 'completed';
+CREATE INDEX IF NOT EXISTS idx_ticketing_open_dashboard
+ON support_tickets (opened_at DESC, ticket_id DESC)
+WHERE status IN ('open', 'assigned', 'waiting_customer');
 
 EXPLAIN (ANALYZE, BUFFERS)
-SELECT order_id, customer_id, order_date, status
-FROM orders
-WHERE status = 'completed'
-  AND order_date >= DATE '2025-01-01'
-  AND order_date <  DATE '2025-07-01'
-ORDER BY order_date, order_id;
-
-DROP INDEX IF EXISTS idx_orders_completed_date;
+SELECT ticket_id, opened_at, priority, category, region, status
+FROM support_tickets
+WHERE status IN ('open', 'assigned', 'waiting_customer')
+  AND opened_at >= TIMESTAMP '2026-05-01'
+  AND opened_at <  TIMESTAMP '2026-05-14'
+ORDER BY opened_at DESC, ticket_id DESC;
 ```
 
 ## 5. Criteri di verifica
-- ogni indice ha una query che lo giustifica;
-- il piano prima e dopo è confrontato;
-- si spiegano filtri, join e ordinamenti supportati;
-- si riconoscono trade-off e casi in cui l'indice non serve.
-
-## 6. Checkpoint
-- performance non significa aggiungere indici a caso;
-- un piano va letto rispetto a una query e a una distribuzione dati;
-- l'indice migliore è quello che risolve un problema reale con costo accettabile.
+- il piano prima/dopo è stato letto e commentato;
+- l'indice è legato alla query dei ticket aperti;
+- il trade-off scrittura/lettura è discusso;
+- la materialized view ha una granularità chiara;
+- il controllo raw-curated è eseguito.

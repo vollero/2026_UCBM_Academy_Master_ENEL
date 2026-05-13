@@ -88,9 +88,9 @@ copy_pdf_tree "$source_root/slides/blocks" "$repo_root/slides/blocks"
 copy_activity_tree "$source_root/activities" "$repo_root/activities"
 copy_sql_tree "$source_root/sql" "$repo_root/sql"
 
-if [[ -f "$source_root/docker-compose.yml" ]]; then
-  cp "$source_root/docker-compose.yml" "$repo_root/docker-compose.yml"
-fi
+find "$source_root" -maxdepth 1 -type f -name 'docker-compose*.yml' -print0 | while IFS= read -r -d '' compose_file; do
+  cp "$compose_file" "$repo_root/$(basename "$compose_file")"
+done
 
 rm -f "$repo_root/docs/source-material-index.md" "$repo_root/docs/workflow-docente.md"
 

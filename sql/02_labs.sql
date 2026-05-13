@@ -60,41 +60,45 @@ SET search_path TO training;
 -- 8.7 Extra: spiegare perche NOT IN e NULL sono una combinazione pericolosa.
 
 -- ============================================================
--- Blocco 9 - CTE, viste e query mantenibili
+-- Blocco 9 - Architettura dati containerizzata con DBMS
 -- ============================================================
--- 9.1 Separare in CTE: righe nette, ordini validi, ricavo mensile.
--- 9.2 Costruire un calendario mensile con generate_series.
--- 9.3 Fare LEFT JOIN tra calendario e ricavo per includere mesi senza vendite.
--- 9.4 Usare una CTE per isolare i clienti top e poi dettagliare i loro ordini.
--- 9.5 Creare una vista di reporting che non espone email.
--- 9.6 Extra: creare una CTE ricorsiva che genera i numeri da 1 a 12.
+-- Usare lo stack dedicato:
+-- docker compose -f docker-compose.ticketing.yml up -d
+-- docker exec -i rdsql-ticket-postgres psql -U training -d training < sql/ticket_architecture_schema.sql
+--
+-- 9.1 Descrivere i servizi: collector simulato, PostgreSQL, Metabase.
+-- 9.2 Distinguere dati raw, dati curati e viste di dashboard.
+-- 9.3 Verificare chiavi e vincoli dello schema ticketing.
+-- 9.4 Eseguire una query di controllo tra support_tickets_raw e support_tickets.
+-- 9.5 Eseguire il collector manualmente con ticket_collector_tick.sql.
+-- 9.6 Extra: proporre una nuova tabella o vista senza rompere la dashboard.
 
 -- ============================================================
--- Blocco 10 - Window function
+-- Blocco 10 - Query SQL per dashboard Metabase
 -- ============================================================
--- 10.1 Classificare gli ordini per ricavo dentro ogni paese.
--- 10.2 Calcolare ricavo cumulato mese per mese.
--- 10.3 Per ogni cliente, mostrare ordine corrente, ordine precedente e giorni intercorsi.
--- 10.4 Calcolare media mobile a 3 mesi del ricavo.
--- 10.5 Top 2 prodotti per ricavo dentro ogni categoria.
--- 10.6 Gap analysis: clienti con piu di 45 giorni tra due ordini.
+-- 10.1 Costruire una scheda KPI con volume, arretrato e ticket critici.
+-- 10.2 Costruire un andamento giornaliero da dashboard_daily_flow.
+-- 10.3 Costruire una distribuzione per priorita e stato.
+-- 10.4 Calcolare tempi medi di risoluzione per priorita e regione.
+-- 10.5 Calcolare ranking delle categorie e media mobile a 3 giorni.
+-- 10.6 Extra: trasformare una query in domanda parametrica Metabase.
 
 -- ============================================================
--- Blocco 11 - Performance, EXPLAIN e indici
+-- Blocco 11 - Performance di un DBMS per dashboard
 -- ============================================================
--- 11.1 Usare EXPLAIN su una query filtrata per date.
--- 11.2 Creare un indice su orders(order_date) e confrontare il piano.
--- 11.3 Creare un indice composito per customer_id + order_date.
--- 11.4 Creare un indice parziale sugli ordini validi.
--- 11.5 Riscrivere un filtro non sargable in forma sargable.
--- 11.6 Extra: discutere quando un indice peggiora il sistema.
+-- 11.1 Usare EXPLAIN su una query filtrata per date e stato.
+-- 11.2 Creare indici coerenti con i filtri usati dalla dashboard.
+-- 11.3 Confrontare piano prima e dopo un indice composito.
+-- 11.4 Creare un indice parziale per ticket aperti e critici.
+-- 11.5 Costruire e aggiornare una vista materializzata di KPI giornalieri.
+-- 11.6 Extra: discutere quando un indice o una materialized view peggiora il sistema.
 
 -- ============================================================
--- Blocco 12 - Capstone
+-- Blocco 12 - Capstone architettura DBMS e dashboard
 -- ============================================================
--- 12.1 Customer 360: ordini, ricavo, ultimo ordine, ticket aperti, rank cliente.
--- 12.2 Product portfolio: quantita, ricavo, rank per categoria, stock stimato.
--- 12.3 Delivery & Support: spedizioni aperte o consegnate oltre 5 giorni con ticket.
--- 12.4 Dashboard mensile: ricavo, ordini, AOV, crescita mese su mese, cumulato.
--- 12.5 Aggiungere due query di controllo per la traccia scelta.
--- 12.6 Extra: trasformare una query finale in vista materializzata.
+-- 12.1 Avviare l'intera architettura containerizzata.
+-- 12.2 Caricare schema, dati iniziali e simulazione collector.
+-- 12.3 Collegare Metabase a PostgreSQL.
+-- 12.4 Costruire almeno quattro card SQL: KPI, trend, distribuzione e dettaglio.
+-- 12.5 Definire due query di controllo per verificare coerenza raw/curated.
+-- 12.6 Extra: documentare una variante architetturale replicabile.

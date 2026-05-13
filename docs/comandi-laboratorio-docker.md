@@ -114,6 +114,76 @@ docker exec -i rdsql-postgres psql -U training -d training < sql/03_solutions.sq
 docker exec -i rdsql-postgres psql -U training -d training < sql/00_schema_and_all_solutions_postgres.sql
 ```
 
+## Blocchi 9-12: Stack Ticketing Con Metabase
+
+Avviare lo stack dedicato:
+
+```bash
+docker compose -f docker-compose.ticketing.yml up -d
+```
+
+Controllare i container:
+
+```bash
+docker compose -f docker-compose.ticketing.yml ps
+```
+
+Seguire il collector simulato:
+
+```bash
+docker logs -f rdsql-ticket-collector
+```
+
+Entrare nel PostgreSQL ticketing:
+
+```bash
+docker exec -it rdsql-ticket-postgres psql -U training -d training
+```
+
+Dentro `psql`:
+
+```sql
+SET search_path TO ticketing;
+\dt
+SELECT count(*) FROM support_tickets;
+SELECT count(*) FROM support_tickets_raw;
+SELECT * FROM dashboard_daily_flow ORDER BY day;
+```
+
+Eseguire lo schema ticketing nello stack PostgreSQL standard, se si vuole provare senza Metabase:
+
+```bash
+docker exec -i rdsql-postgres psql -U training -d training < sql/ticket_architecture_schema.sql
+```
+
+Eseguire le query per dashboard:
+
+```bash
+docker exec -i rdsql-postgres psql -U training -d training < sql/ticket_architecture_dashboard_queries.sql
+```
+
+Simulare un nuovo ticket:
+
+```bash
+docker exec -i rdsql-postgres psql -U training -d training < sql/ticket_collector_tick.sql
+```
+
+Aprire Metabase:
+
+```text
+http://localhost:3000
+```
+
+Parametri connessione Metabase:
+
+```text
+host: postgres
+port: 5432
+database: training
+user: training
+password: training
+```
+
 ## Blocco 3: Test Normalizzazione
 
 ```bash
@@ -233,28 +303,13 @@ Blocco 8:
 docker exec -i rdsql-postgres psql -U training -d training < activities/block08_subquery_set_logic/introduzione_subquery_examples.sql
 ```
 
-Blocco 9:
+Blocco 9-12: per il nuovo percorso ticketing usare gli script `sql/ticket_architecture_schema.sql`, `sql/ticket_architecture_dashboard_queries.sql` e le soluzioni dei blocchi 9-12.
+
+Blocchi 9-12:
 
 ```bash
-docker exec -i rdsql-postgres psql -U training -d training < activities/block09_cte_viste_mantenibilita/introduzione_cte_viste_examples.sql
-```
-
-Blocco 10:
-
-```bash
-docker exec -i rdsql-postgres psql -U training -d training < activities/block10_window_functions/introduzione_window_examples.sql
-```
-
-Blocco 11:
-
-```bash
-docker exec -i rdsql-postgres psql -U training -d training < activities/block11_performance_explain_indici/introduzione_performance_examples.sql
-```
-
-Blocco 12:
-
-```bash
-docker exec -i rdsql-postgres psql -U training -d training < activities/block12_capstone_query_design/introduzione_capstone_examples.sql
+docker exec -i rdsql-postgres psql -U training -d training < sql/ticket_architecture_schema.sql
+docker exec -i rdsql-postgres psql -U training -d training < sql/ticket_architecture_dashboard_queries.sql
 ```
 
 ## Soluzioni SQL Per Blocco

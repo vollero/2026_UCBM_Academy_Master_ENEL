@@ -1,65 +1,65 @@
-# Blocco 10 - Window function
+# Blocco 10 - Query SQL per dashboard
 
 ## 1. Problema in forma informale
-Il management vuole leggere classifiche e trend: ranking dei paesi per mese, ricavo cumulato, confronto con mese precedente e quota percentuale del totale.
+La direzione vuole una dashboard operativa sui ticket. Prima di costruirla in Metabase, bisogna scrivere query SQL verificabili per KPI, trend, ranking e dettaglio.
 
 ## 2. Specifica corretta del problema
-- input: aggregati di vendita validi;
-- output: query con window function e colonne di confronto;
-- vincolo: mantenere il dettaglio richiesto, non collassare righe inutilmente;
-- vincolo: ogni finestra deve dichiarare partizione e ordinamento quando rilevanti.
+- input: schema `ticketing` e viste `dashboard_*`;
+- output: query-card copiabili in Metabase;
+- vincolo: ogni query deve avere una granularità chiara;
+- vincolo: includere almeno KPI, serie temporale, ranking, media mobile e tabella di dettaglio;
+- vincolo: usare SQL esplicito, non formule nascoste nella dashboard.
 
 ## 3. Definizione della soluzione
-1. costruire CTE base con ricavo mensile;
-2. applicare ranking per partizione mensile;
-3. usare `sum(...) OVER` per cumulati;
-4. usare `lag` per confronto col periodo precedente.
+1. caricare lo schema ticketing;
+2. eseguire le query del file `sql/ticket_architecture_dashboard_queries.sql`;
+3. associare ogni query a una visualizzazione;
+4. discutere filtri e denominatori;
+5. salvare le query come domande Metabase.
 
-## 4. Implementazione completa o artefatto atteso
-Soluzione caricabile nel container PostgreSQL Docker dopo lo schema di laboratorio.
+## 4. Implementazione completa
+Caricare prima lo schema nello stack ticketing, poi eseguire le query dashboard:
+
+```bash
+docker exec rdsql-ticket-postgres psql -U training -d training -v ON_ERROR_STOP=1 -f /sql/ticket_architecture_schema.sql
+docker exec rdsql-ticket-postgres psql -U training -d training -v ON_ERROR_STOP=1 -f /sql/ticket_architecture_dashboard_queries.sql
+```
+
+Query principale per KPI:
 
 ```sql
-SET search_path TO training;
+SET search_path TO ticketing;
 
-WITH country_month AS (
-    SELECT date_trunc('month', r.order_date)::date AS month,
-           c.country,
-           round(sum(r.gross_revenue), 2) AS revenue
-    FROM order_revenue r
-    JOIN customers c ON c.customer_id = r.customer_id
-    WHERE r.status NOT IN ('cancelled', 'refunded')
-    GROUP BY month, c.country
-)
-SELECT month, country, revenue,
-       rank() OVER (PARTITION BY month ORDER BY revenue DESC, country) AS country_rank,
-       round(100 * revenue / sum(revenue) OVER (PARTITION BY month), 2) AS pct_month
-FROM country_month
-ORDER BY month, country_rank, country;
+SELECT count(*) AS total_tickets,
+       count(*) FILTER (WHERE closed_at IS NULL) AS open_tickets,
+       count(*) FILTER (WHERE closed_at IS NOT NULL) AS closed_tickets,
+       count(*) FILTER (WHERE sla_breached) AS sla_breached_tickets
+FROM dashboard_ticket_base;
+```
 
+Query per trend:
 
-WITH monthly_channel AS (
-    SELECT date_trunc('month', order_date)::date AS month,
-           channel,
-           round(sum(gross_revenue), 2) AS revenue
-    FROM order_revenue
-    WHERE status NOT IN ('cancelled', 'refunded')
-    GROUP BY month, channel
-)
-SELECT month, channel, revenue,
-       sum(revenue) OVER (PARTITION BY channel ORDER BY month
-           ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS cumulative_revenue,
-       lag(revenue) OVER (PARTITION BY channel ORDER BY month) AS previous_month_revenue
-FROM monthly_channel
-ORDER BY channel, month;
+```sql
+SELECT day, opened_tickets, resolved_tickets, backlog_delta
+FROM dashboard_daily_flow
+ORDER BY day;
+```
+
+Query con window function:
+
+```sql
+SELECT day,
+       opened_tickets,
+       round(avg(opened_tickets) OVER (
+           ORDER BY day ROWS BETWEEN 2 PRECEDING AND CURRENT ROW
+       ), 2) AS opened_3d_avg
+FROM dashboard_daily_flow
+ORDER BY day;
 ```
 
 ## 5. Criteri di verifica
-- la relazione base ha la granularità giusta;
-- partizione e ordinamento sono coerenti con la domanda;
-- il numero di righe finali è quello atteso;
-- i pari merito sono trattati intenzionalmente.
-
-## 6. Checkpoint
-- una window function arricchisce righe, non le raggruppa;
-- partizione e ordinamento sono parte della semantica, non dettagli opzionali;
-- prima si costruisce la relazione base, poi si applica la finestra.
+- ogni query restituisce il numero di righe atteso;
+- i KPI hanno denominatori chiari;
+- i trend usano una riga per giorno;
+- ranking e media mobile sono calcolati in SQL;
+- ogni query può diventare una card Metabase.

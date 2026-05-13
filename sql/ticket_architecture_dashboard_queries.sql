@@ -1,7 +1,5 @@
--- Blocco 10 - Query SQL per dashboard
--- Prerequisito: caricare prima lo schema ticketing.
--- Con lo stack dedicato:
--- docker exec rdsql-ticket-postgres psql -U training -d training -v ON_ERROR_STOP=1 -f /sql/ticket_architecture_schema.sql
+-- Query per dashboard Metabase sullo schema ticketing.
+-- Prerequisito: eseguire prima sql/ticket_architecture_schema.sql
 
 SET search_path TO ticketing;
 
