@@ -1,4 +1,4 @@
-# Comandi Rapidi Laboratorio Docker/PostgreSQL
+# Comandi Rapidi Laboratorio Docker/PostgreSQL/MongoDB
 
 Questa pagina raccoglie i comandi da copiare e incollare durante il laboratorio.
 
@@ -180,6 +180,74 @@ Parametri connessione Metabase:
 host: postgres
 port: 5432
 database: training
+user: training
+password: training
+```
+
+## Blocchi 15-16: Stack Telemetria Con MongoDB
+
+Avviare lo stack dedicato:
+
+```bash
+docker compose -f docker-compose.telemetry.yml up -d
+```
+
+Controllare i container:
+
+```bash
+docker compose -f docker-compose.telemetry.yml ps
+```
+
+Seguire il collector simulato:
+
+```bash
+docker logs -f rdnosql-telemetry-collector
+```
+
+Entrare in MongoDB:
+
+```bash
+docker exec -it rdnosql-telemetry-mongo mongosh
+```
+
+Dentro `mongosh`:
+
+```javascript
+use telemetry
+show collections
+db.devices.countDocuments()
+db.readings_raw.countDocuments()
+db.readings_curated.countDocuments()
+db.readings_curated.find().sort({ ts: -1 }).limit(3)
+```
+
+Ricaricare schema, dati seed e indici:
+
+```bash
+docker exec rdnosql-telemetry-mongo mongosh /nosql/telemetry_schema.js
+```
+
+Simulare una singola nuova lettura:
+
+```bash
+docker exec rdnosql-telemetry-mongo mongosh /nosql/telemetry_collector_tick.js
+```
+
+Eseguire le query di dashboard:
+
+```bash
+docker exec rdnosql-telemetry-mongo mongosh /nosql/telemetry_dashboard_queries.js
+```
+
+Aprire mongo-express:
+
+```text
+http://localhost:8081
+```
+
+Credenziali mongo-express:
+
+```text
 user: training
 password: training
 ```
@@ -368,6 +436,20 @@ Blocco 12:
 docker exec -i rdsql-postgres psql -U training -d training < activities/block12_capstone_query_design/solution.sql
 ```
 
+## Soluzioni MongoDB Per Blocco
+
+Blocco 15:
+
+```bash
+docker exec rdnosql-telemetry-mongo mongosh /activities/block15_telemetria_mongodb_architettura/solution.js
+```
+
+Blocco 16:
+
+```bash
+docker exec rdnosql-telemetry-mongo mongosh /activities/block16_telemetria_dashboard_capstone/solution.js
+```
+
 ## Eseguire Una Query Singola Da Terminale
 
 ```bash
@@ -432,6 +514,12 @@ Rimuovere container e dati del laboratorio:
 
 ```bash
 docker compose down -v
+```
+
+Rimuovere container e dati dello stack telemetria:
+
+```bash
+docker compose -f docker-compose.telemetry.yml down -v
 ```
 
 Ripartire da zero:

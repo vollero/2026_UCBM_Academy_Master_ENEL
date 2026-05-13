@@ -49,12 +49,12 @@ copy_pdf_tree() {
 copy_activity_tree() {
   local src="$1"
   local dest="$2"
-  if ! has_matching_file "$src" \( -name '*.pdf' -o -name '*.md' -o -name '*.sql' \); then
+  if ! has_matching_file "$src" \( -name '*.pdf' -o -name '*.md' -o -name '*.sql' -o -name '*.js' \); then
     echo "Errore: nessuna attività trovata in $src. Sync annullato." >&2
     exit 1
   fi
   reset_release_dir "$dest"
-  find "$src" -type f \( -name '*.pdf' -o -name '*.md' -o -name '*.sql' \) -print0 | while IFS= read -r -d '' file; do
+  find "$src" -type f \( -name '*.pdf' -o -name '*.md' -o -name '*.sql' -o -name '*.js' \) -print0 | while IFS= read -r -d '' file; do
     local rel="${file#$src/}"
     mkdir -p "$dest/$(dirname "$rel")"
     cp "$file" "$dest/$rel"
@@ -76,6 +76,24 @@ copy_sql_tree() {
   done
 }
 
+copy_nosql_tree() {
+  local src="$1"
+  local dest="$2"
+  if [[ ! -e "$src" ]]; then
+    return 0
+  fi
+  if ! has_matching_file "$src" \( -name '*.js' -o -name '*.md' -o -name '*.json' \); then
+    echo "Errore: nessuno script NoSQL trovato in $src. Sync annullato." >&2
+    exit 1
+  fi
+  reset_release_dir "$dest"
+  find "$src" -type f \( -name '*.js' -o -name '*.md' -o -name '*.json' \) -print0 | while IFS= read -r -d '' file; do
+    local rel="${file#$src/}"
+    mkdir -p "$dest/$(dirname "$rel")"
+    cp "$file" "$dest/$rel"
+  done
+}
+
 has_matching_file() {
   local src="$1"
   shift
@@ -87,6 +105,7 @@ has_matching_file() {
 copy_pdf_tree "$source_root/slides/blocks" "$repo_root/slides/blocks"
 copy_activity_tree "$source_root/activities" "$repo_root/activities"
 copy_sql_tree "$source_root/sql" "$repo_root/sql"
+copy_nosql_tree "$source_root/nosql" "$repo_root/nosql"
 
 find "$source_root" -maxdepth 1 -type f -name 'docker-compose*.yml' -print0 | while IFS= read -r -d '' compose_file; do
   cp "$compose_file" "$repo_root/$(basename "$compose_file")"
@@ -100,7 +119,7 @@ rm -f "$repo_root/docs/source-material-index.md" "$repo_root/docs/workflow-docen
   echo -e "path\tbytes"
   (
     cd "$repo_root"
-    for path in README.md docker-compose.yml slides activities sql docs; do
+    for path in README.md docker-compose*.yml slides activities sql nosql docs; do
       [[ -e "$path" ]] && find "$path" -type f
     done | sort | while IFS= read -r file; do
       bytes="$(wc -c < "$file" | tr -d ' ')"

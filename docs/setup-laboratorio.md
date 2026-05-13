@@ -1,6 +1,6 @@
-# Setup Laboratorio PostgreSQL
+# Setup Laboratorio PostgreSQL E MongoDB
 
-Questa guida mostra come eseguire gli script SQL del corso con PostgreSQL in Docker.
+Questa guida mostra come eseguire gli script SQL con PostgreSQL e gli script NoSQL con MongoDB in Docker.
 
 L'ambiente standard del laboratorio è il container `rdsql-postgres` definito in `docker-compose.yml`. Non è necessario installare PostgreSQL localmente.
 
@@ -8,7 +8,9 @@ Per una lista compatta di comandi da copiare e incollare durante il laboratorio,
 
 Per una raccolta di query SQL pronte per cancellazione, creazione, inserimento, `JOIN` e raggruppamenti, vedere [query-copia-incolla.md](query-copia-incolla.md).
 
-Per i blocchi 9-12 è disponibile anche uno stack dedicato con PostgreSQL, collector simulato e Metabase. La guida è [architettura-ticketing.md](architettura-ticketing.md).
+Per i blocchi 9-12 è disponibile uno stack dedicato con PostgreSQL, collector simulato e Metabase. La guida è [architettura-ticketing.md](architettura-ticketing.md).
+
+Per i blocchi 15-16 è disponibile uno stack NoSQL con MongoDB, collector simulato e mongo-express. La guida è [architettura-telemetria.md](architettura-telemetria.md).
 
 ## Avviare PostgreSQL In Docker
 
@@ -145,4 +147,58 @@ SET search_path TO ticketing;
 \dt
 SELECT count(*) FROM support_tickets;
 SELECT count(*) FROM support_tickets_raw;
+```
+
+## Stack Telemetria Per Blocchi 15-16
+
+Avviare MongoDB, collector simulato e mongo-express:
+
+```bash
+docker compose -f docker-compose.telemetry.yml up -d
+```
+
+mongo-express è disponibile su:
+
+```text
+http://localhost:8081
+```
+
+Credenziali:
+
+```text
+user: training
+password: training
+```
+
+Per entrare in MongoDB:
+
+```bash
+docker exec -it rdnosql-telemetry-mongo mongosh
+```
+
+Dentro `mongosh`:
+
+```javascript
+use telemetry
+show collections
+db.devices.countDocuments()
+db.readings_curated.find().sort({ ts: -1 }).limit(3)
+```
+
+Per ricaricare schema e dati seed:
+
+```bash
+docker exec rdnosql-telemetry-mongo mongosh /nosql/telemetry_schema.js
+```
+
+Per simulare una nuova lettura:
+
+```bash
+docker exec rdnosql-telemetry-mongo mongosh /nosql/telemetry_collector_tick.js
+```
+
+Per eseguire le query dashboard:
+
+```bash
+docker exec rdnosql-telemetry-mongo mongosh /nosql/telemetry_dashboard_queries.js
 ```

@@ -1,0 +1,53 @@
+services:
+  mongo:
+    image: mongo:7
+    container_name: rdnosql-telemetry-mongo
+    ports:
+      - "27018:27017"
+    volumes:
+      - rdnosql-telemetry-data:/data/db
+      - ./nosql:/nosql:ro
+      - ./activities:/activities:ro
+    healthcheck:
+      test: ["CMD-SHELL", "mongosh --quiet --eval \"db.adminCommand('ping').ok\" | grep -q 1"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  telemetry-collector:
+    image: mongo:7
+    container_name: rdnosql-telemetry-collector
+    depends_on:
+      mongo:
+        condition: service_healthy
+    volumes:
+      - ./nosql:/nosql:ro
+    command: >
+      bash -lc "
+      until mongosh --host mongo --quiet --eval 'db.adminCommand({ ping: 1 }).ok' | grep -q 1;
+      do
+        sleep 2;
+      done;
+      mongosh --host mongo /nosql/telemetry_schema.js;
+      while true;
+      do
+        mongosh --host mongo /nosql/telemetry_collector_tick.js;
+        sleep 10;
+      done"
+
+  mongo-express:
+    image: mongo-express:latest
+    container_name: rdnosql-telemetry-mongo-express
+    depends_on:
+      mongo:
+        condition: service_healthy
+    ports:
+      - "8081:8081"
+    environment:
+      ME_CONFIG_MONGODB_SERVER: mongo
+      ME_CONFIG_MONGODB_PORT: 27017
+      ME_CONFIG_BASICAUTH_USERNAME: training
+      ME_CONFIG_BASICAUTH_PASSWORD: training
+
+volumes:
+  rdnosql-telemetry-data:

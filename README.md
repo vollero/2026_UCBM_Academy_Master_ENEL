@@ -1,25 +1,27 @@
-# Relational Databases & SQL
+# Relational Databases, SQL & NoSQL
 
-Materiale del corso **Relational Databases & SQL** per il Master ENEL 2026.
+Materiale del corso **Relational Databases & SQL** per il Master ENEL 2026, con estensione NoSQL sui blocchi finali.
 
-Qui trovate slide, attività pratiche, esercitazioni SQL e script per lavorare con PostgreSQL in Docker.
+Qui trovate slide, attività pratiche, esercitazioni SQL/NoSQL e script per lavorare con PostgreSQL e MongoDB in Docker.
 
 ## Da Dove Iniziare
 
 1. Leggete [docs/guida-studenti.md](docs/guida-studenti.md).
 2. Aprite le slide del blocco in `slides/blocks/`.
 3. Usate il PDF attività corrispondente in `activities/<blocco>/`.
-4. Per le esercitazioni SQL, preparate PostgreSQL seguendo [docs/setup-laboratorio.md](docs/setup-laboratorio.md).
+4. Per le esercitazioni operative, preparate PostgreSQL o MongoDB seguendo [docs/setup-laboratorio.md](docs/setup-laboratorio.md).
 5. Per i comandi da copiare e incollare in aula, usate [docs/comandi-laboratorio-docker.md](docs/comandi-laboratorio-docker.md).
 
 ## Organizzazione
 
 - `slides/blocks/`: slide PDF delle lezioni e materiali introduttivi aggiuntivi.
-- `activities/`: tracce, handout, esercitazioni Docker, file Markdown e script SQL.
+- `activities/`: tracce, handout, esercitazioni Docker, file Markdown, script SQL e script MongoDB.
 - `sql/`: schema dati e script SQL generali del laboratorio.
+- `nosql/`: script MongoDB per il laboratorio di telemetria NoSQL.
 - `docs/`: guida studenti, setup laboratorio e indice dei materiali.
 - `docker-compose.yml`: ambiente Docker standard del laboratorio PostgreSQL.
 - `docker-compose.ticketing.yml`: stack dei blocchi 9-12 con PostgreSQL, collector simulato e Metabase.
+- `docker-compose.telemetry.yml`: stack dei blocchi 15-16 con MongoDB, collector simulato e mongo-express.
 - `docs/query-copia-incolla.md`: query SQL pronte per copia/incolla.
 
 ## Percorso Del Corso
@@ -38,6 +40,10 @@ Qui trovate slide, attività pratiche, esercitazioni SQL e script per lavorare c
 | 10 | Query SQL per dashboard Metabase |
 | 11 | Performance di un DBMS per dashboard |
 | 12 | Capstone architettura DBMS e dashboard |
+| 13 | Fondamenti NoSQL |
+| 14 | Scenari e modellazione NoSQL |
+| 15 | Telemetria NoSQL con MongoDB |
+| 16 | Dashboard e capstone NoSQL |
 
 ## Laboratorio SQL
 
@@ -66,6 +72,30 @@ docker compose -f docker-compose.ticketing.yml up -d
 ```
 
 La guida dedicata è in [docs/architettura-ticketing.md](docs/architettura-ticketing.md).
+
+## Laboratorio NoSQL
+
+I blocchi 13-14 introducono tecnologie, modelli e scenari NoSQL. I blocchi 15-16 usano un sistema di telemetria con MongoDB, collector simulato e interfaccia web `mongo-express`.
+
+Per avviare lo stack:
+
+```bash
+docker compose -f docker-compose.telemetry.yml up -d
+```
+
+Per ricaricare schema e dati:
+
+```bash
+docker exec rdnosql-telemetry-mongo mongosh /nosql/telemetry_schema.js
+```
+
+Per eseguire le query dashboard:
+
+```bash
+docker exec rdnosql-telemetry-mongo mongosh /nosql/telemetry_dashboard_queries.js
+```
+
+La guida dedicata è in [docs/architettura-telemetria.md](docs/architettura-telemetria.md).
 
 ## Indice Completo
 

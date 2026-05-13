@@ -14,6 +14,10 @@
 - Blocco 10: `slides/blocks/block10_window_functions/block10_window_functions.pdf`
 - Blocco 11: `slides/blocks/block11_performance_explain_indici/block11_performance_explain_indici.pdf`
 - Blocco 12: `slides/blocks/block12_capstone_query_design/block12_capstone_query_design.pdf`
+- Blocco 13: `slides/blocks/block13_nosql_fondamenti/block13_nosql_fondamenti.pdf`
+- Blocco 14: `slides/blocks/block14_nosql_scenari_modelli/block14_nosql_scenari_modelli.pdf`
+- Blocco 15: `slides/blocks/block15_telemetria_mongodb_architettura/block15_telemetria_mongodb_architettura.pdf`
+- Blocco 16: `slides/blocks/block16_telemetria_dashboard_capstone/block16_telemetria_dashboard_capstone.pdf`
 
 ## Attività
 
@@ -45,10 +49,20 @@ Per ogni blocco sono presenti:
 - `sql/ticket_collector_tick.sql`: inserimento simulato di un nuovo ticket;
 - `docs/query-copia-incolla.md`: documento con query SQL pronte per copia/incolla.
 
+## Script NoSQL Generali
+
+- `nosql/telemetry_schema.js`: database MongoDB `telemetry`, dati seed e indici;
+- `nosql/telemetry_collector_tick.js`: simulazione di una nuova lettura di telemetria;
+- `nosql/telemetry_dashboard_queries.js`: aggregation pipeline per le schede dashboard;
+- `activities/block15_telemetria_mongodb_architettura/solution.js`: soluzione operativa del blocco 15;
+- `activities/block16_telemetria_dashboard_capstone/solution.js`: soluzione operativa del blocco 16.
+
 ## Ambiente Docker
 
 - `docker-compose.yml`: container PostgreSQL standard del laboratorio;
 - `docker-compose.ticketing.yml`: stack ticketing con PostgreSQL, collector simulato e Metabase;
+- `docker-compose.telemetry.yml`: stack telemetria con MongoDB, collector simulato e mongo-express;
 - `docs/setup-laboratorio.md`: istruzioni per avviare il container, caricare lo schema ed eseguire gli script;
 - `docs/comandi-laboratorio-docker.md`: comandi rapidi per gestione container, `psql`, esercitazioni e soluzioni;
-- `docs/architettura-ticketing.md`: guida specifica per lo stack dei blocchi 9-12.
+- `docs/architettura-ticketing.md`: guida specifica per lo stack dei blocchi 9-12;
+- `docs/architettura-telemetria.md`: guida specifica per lo stack NoSQL dei blocchi 15-16.

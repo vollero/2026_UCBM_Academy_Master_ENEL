@@ -1,8 +1,8 @@
 # Elenco tecnico dei materiali della repository
-# Generated at: 2026-05-13T16:01:26+02:00
+# Generated at: 2026-05-13T16:25:25+02:00
 path	bytes
-README.md	2880
-activities/README.md	6804
+README.md	3916
+activities/README.md	8418
 activities/block01_dominio_relazioni/activity.md	2264
 activities/block01_dominio_relazioni/block01_dominio_relazioni_activity.pdf	134443
 activities/block01_dominio_relazioni/solution.md	1651
@@ -83,13 +83,34 @@ activities/block12_capstone_query_design/activity.md	1898
 activities/block12_capstone_query_design/block12_capstone_query_design_activity.pdf	164226
 activities/block12_capstone_query_design/solution.md	942
 activities/block12_capstone_query_design/solution.sql	1450
+activities/block13_nosql_fondamenti/activity.md	1955
+activities/block13_nosql_fondamenti/block13_nosql_fondamenti_activity.pdf	132588
+activities/block13_nosql_fondamenti/solution.md	1296
+activities/block14_nosql_scenari_modelli/activity.md	1565
+activities/block14_nosql_scenari_modelli/block14_nosql_scenari_modelli_activity.pdf	136499
+activities/block14_nosql_scenari_modelli/solution.md	1588
+activities/block15_telemetria_mongodb_architettura/activity.md	2037
+activities/block15_telemetria_mongodb_architettura/block15_telemetria_mongodb_architettura_activity.pdf	160056
+activities/block15_telemetria_mongodb_architettura/solution.js	997
+activities/block15_telemetria_mongodb_architettura/solution.md	1278
+activities/block16_telemetria_dashboard_capstone/activity.md	1647
+activities/block16_telemetria_dashboard_capstone/block16_telemetria_dashboard_capstone_activity.pdf	157555
+activities/block16_telemetria_dashboard_capstone/solution.js	1912
+activities/block16_telemetria_dashboard_capstone/solution.md	1052
+docker-compose.telemetry.yml	1347
+docker-compose.ticketing.yml	1518
 docker-compose.yml	319
+docs/architettura-telemetria.md	3859
 docs/architettura-ticketing.md	1591
-docs/comandi-laboratorio-docker.md	9662
-docs/guida-studenti.md	2395
-docs/indice-materiali.md	2890
+docs/comandi-laboratorio-docker.md	11222
+docs/guida-studenti.md	3183
+docs/indice-materiali.md	3966
 docs/query-copia-incolla.md	9312
-docs/setup-laboratorio.md	3065
+docs/setup-laboratorio.md	4160
+nosql/README.md	746
+nosql/telemetry_collector_tick.js	3846
+nosql/telemetry_dashboard_queries.js	3531
+nosql/telemetry_schema.js	6413
 slides/blocks/block01_dominio_relazioni/block01_dominio_relazioni.pdf	155781
 slides/blocks/block02_chiavi_vincoli_integrita/block02_chiavi_vincoli_integrita.pdf	158225
 slides/blocks/block03_normalizzazione_schema/block03_normalizzazione_schema.pdf	153824
@@ -108,6 +129,10 @@ slides/blocks/block09_cte_viste_mantenibilita/block09_cte_viste_mantenibilita.pd
 slides/blocks/block10_window_functions/block10_window_functions.pdf	217504
 slides/blocks/block11_performance_explain_indici/block11_performance_explain_indici.pdf	195331
 slides/blocks/block12_capstone_query_design/block12_capstone_query_design.pdf	194751
+slides/blocks/block13_nosql_fondamenti/block13_nosql_fondamenti.pdf	166810
+slides/blocks/block14_nosql_scenari_modelli/block14_nosql_scenari_modelli.pdf	191619
+slides/blocks/block15_telemetria_mongodb_architettura/block15_telemetria_mongodb_architettura.pdf	193961
+slides/blocks/block16_telemetria_dashboard_capstone/block16_telemetria_dashboard_capstone.pdf	187437
 sql/00_schema_and_all_solutions_postgres.sql	24607
 sql/01_schema_seed_postgres.sql	18477
 sql/02_labs.sql	5800

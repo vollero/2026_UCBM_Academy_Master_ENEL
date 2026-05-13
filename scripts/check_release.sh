@@ -19,12 +19,14 @@ done <<'EOF'
 README.md
 docker-compose.yml
 docker-compose.ticketing.yml
+docker-compose.telemetry.yml
 docs/guida-studenti.md
 docs/setup-laboratorio.md
 docs/indice-materiali.md
 docs/comandi-laboratorio-docker.md
 docs/query-copia-incolla.md
 docs/architettura-ticketing.md
+docs/architettura-telemetria.md
 manifest/materials.tsv
 slides/blocks/block01_dominio_relazioni/block01_dominio_relazioni.pdf
 slides/blocks/block02_chiavi_vincoli_integrita/block02_chiavi_vincoli_integrita.pdf
@@ -44,6 +46,10 @@ slides/blocks/block09_cte_viste_mantenibilita/block09_cte_viste_mantenibilita.pd
 slides/blocks/block10_window_functions/block10_window_functions.pdf
 slides/blocks/block11_performance_explain_indici/block11_performance_explain_indici.pdf
 slides/blocks/block12_capstone_query_design/block12_capstone_query_design.pdf
+slides/blocks/block13_nosql_fondamenti/block13_nosql_fondamenti.pdf
+slides/blocks/block14_nosql_scenari_modelli/block14_nosql_scenari_modelli.pdf
+slides/blocks/block15_telemetria_mongodb_architettura/block15_telemetria_mongodb_architettura.pdf
+slides/blocks/block16_telemetria_dashboard_capstone/block16_telemetria_dashboard_capstone.pdf
 activities/README.md
 activities/block01_dominio_relazioni/block01_dominio_relazioni_activity.pdf
 activities/block02_chiavi_vincoli_integrita/block02_chiavi_vincoli_integrita_activity.pdf
@@ -80,6 +86,20 @@ activities/block09_cte_viste_mantenibilita/block09_cte_viste_mantenibilita_activ
 activities/block10_window_functions/block10_window_functions_activity.pdf
 activities/block11_performance_explain_indici/block11_performance_explain_indici_activity.pdf
 activities/block12_capstone_query_design/block12_capstone_query_design_activity.pdf
+activities/block13_nosql_fondamenti/block13_nosql_fondamenti_activity.pdf
+activities/block13_nosql_fondamenti/activity.md
+activities/block13_nosql_fondamenti/solution.md
+activities/block14_nosql_scenari_modelli/block14_nosql_scenari_modelli_activity.pdf
+activities/block14_nosql_scenari_modelli/activity.md
+activities/block14_nosql_scenari_modelli/solution.md
+activities/block15_telemetria_mongodb_architettura/block15_telemetria_mongodb_architettura_activity.pdf
+activities/block15_telemetria_mongodb_architettura/activity.md
+activities/block15_telemetria_mongodb_architettura/solution.md
+activities/block15_telemetria_mongodb_architettura/solution.js
+activities/block16_telemetria_dashboard_capstone/block16_telemetria_dashboard_capstone_activity.pdf
+activities/block16_telemetria_dashboard_capstone/activity.md
+activities/block16_telemetria_dashboard_capstone/solution.md
+activities/block16_telemetria_dashboard_capstone/solution.js
 sql/00_schema_and_all_solutions_postgres.sql
 sql/01_schema_seed_postgres.sql
 sql/02_labs.sql
@@ -88,6 +108,10 @@ sql/query_copia_incolla.sql
 sql/ticket_architecture_schema.sql
 sql/ticket_collector_tick.sql
 sql/ticket_architecture_dashboard_queries.sql
+nosql/README.md
+nosql/telemetry_schema.js
+nosql/telemetry_collector_tick.js
+nosql/telemetry_dashboard_queries.js
 EOF
 
 if [[ "$missing" -ne 0 ]]; then
