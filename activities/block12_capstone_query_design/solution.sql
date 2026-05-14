@@ -41,3 +41,45 @@ SELECT (SELECT count(*) FROM support_tickets_raw) AS raw_events,
         LEFT JOIN support_tickets t
           ON t.external_ticket_id = r.external_ticket_id
         WHERE t.ticket_id IS NULL) AS raw_without_curated_ticket;
+
+-- Esperimento indici: query target per il piano prima/dopo.
+-- Per rendere il beneficio visibile, caricare prima:
+--   psql -U training -d training -v load_size=80000 -f /sql/ticket_load_generate.sql
+
+EXPLAIN (ANALYZE, BUFFERS)
+SELECT ticket_id, opened_at, priority, region, status
+FROM support_tickets
+WHERE status IN ('open', 'assigned', 'waiting_customer')
+  AND opened_at >= TIMESTAMP '2026-03-01'
+ORDER BY opened_at DESC, ticket_id DESC
+LIMIT 50;
+
+CREATE INDEX IF NOT EXISTS idx_support_tickets_open_dashboard
+ON support_tickets (opened_at DESC, ticket_id DESC)
+INCLUDE (priority, region, status, category, sla_due_at)
+WHERE status IN ('open', 'assigned', 'waiting_customer');
+
+CREATE INDEX IF NOT EXISTS idx_support_tickets_region_category_date
+ON support_tickets (region, category, opened_at DESC)
+INCLUDE (status, priority, closed_at, sla_due_at);
+
+ANALYZE support_tickets;
+
+EXPLAIN (ANALYZE, BUFFERS)
+SELECT ticket_id, opened_at, priority, region, status
+FROM support_tickets
+WHERE status IN ('open', 'assigned', 'waiting_customer')
+  AND opened_at >= TIMESTAMP '2026-03-01'
+ORDER BY opened_at DESC, ticket_id DESC
+LIMIT 50;
+
+SELECT c.relname AS index_name,
+       pg_size_pretty(pg_relation_size(c.oid)) AS index_size
+FROM pg_class c
+JOIN pg_namespace n ON n.oid = c.relnamespace
+WHERE n.nspname = 'ticketing'
+  AND c.relname IN (
+      'idx_support_tickets_open_dashboard',
+      'idx_support_tickets_region_category_date'
+  )
+ORDER BY c.relname;

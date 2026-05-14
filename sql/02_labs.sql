@@ -101,4 +101,7 @@ SET search_path TO training;
 -- 12.3 Collegare Metabase a PostgreSQL.
 -- 12.4 Costruire almeno quattro card SQL: KPI, trend, distribuzione e dettaglio.
 -- 12.5 Definire due query di controllo per verificare coerenza raw/curated.
--- 12.6 Extra: documentare una variante architetturale replicabile.
+-- 12.6 Generare un carico storico con ticket_load_generate.sql.
+-- 12.7 Confrontare EXPLAIN prima/dopo gli indici con ticket_index_tradeoff.sql.
+-- 12.8 Discutere trade-off: lettura dashboard, costo scrittura, spazio e manutenzione.
+-- 12.9 Extra: documentare una variante architetturale replicabile.

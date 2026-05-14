@@ -120,6 +120,21 @@ Eseguire le query dashboard da terminale:
 docker exec rdsql-ticket-postgres psql -U training -d training -f /sql/ticket_architecture_dashboard_queries.sql
 ```
 
+Generare un carico storico per il blocco 12:
+
+```bash
+docker exec -i rdsql-ticket-postgres psql -U training -d training \
+  -v load_size=80000 \
+  -f /sql/ticket_load_generate.sql
+```
+
+Eseguire l'esperimento su indici e trade-off:
+
+```bash
+docker exec -i rdsql-ticket-postgres psql -U training -d training \
+  -f /sql/ticket_index_tradeoff.sql
+```
+
 ### Accesso A Metabase
 
 Aprire:

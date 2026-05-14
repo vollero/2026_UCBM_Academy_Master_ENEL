@@ -47,6 +47,8 @@ Per ogni blocco sono presenti:
 - `sql/ticket_architecture_schema.sql`: schema ticketing per i blocchi 9-12;
 - `sql/ticket_architecture_dashboard_queries.sql`: query SQL per dashboard Metabase;
 - `sql/ticket_collector_tick.sql`: inserimento simulato di un nuovo ticket;
+- `sql/ticket_load_generate.sql`: generazione di carico storico per il caso ticketing;
+- `sql/ticket_index_tradeoff.sql`: esperimento su indici, `EXPLAIN`, spazio e costo di scrittura;
 - `docs/query-copia-incolla.md`: documento con query SQL pronte per copia/incolla.
 
 ## Script NoSQL Generali

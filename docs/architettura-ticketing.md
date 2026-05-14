@@ -73,6 +73,25 @@ Le card minime consigliate sono:
 - ranking categorie;
 - tabella di dettaglio ticket aperti.
 
+## Carico E Indici Per Il Blocco 12
+
+Per rendere visibile l'utilità degli indici è possibile generare molti ticket distribuiti nel tempo:
+
+```bash
+docker exec -i rdsql-ticket-postgres psql -U training -d training \
+  -v load_size=80000 \
+  -f /sql/ticket_load_generate.sql
+```
+
+Poi eseguire l'esperimento su piani di esecuzione, indici e costo di scrittura:
+
+```bash
+docker exec -i rdsql-ticket-postgres psql -U training -d training \
+  -f /sql/ticket_index_tradeoff.sql
+```
+
+L'obiettivo non è aggiungere indici in modo automatico, ma leggere il trade-off: query dashboard più selettive, più spazio occupato, scritture più costose e maggiore manutenzione.
+
 ## Spegnimento
 
 ```bash

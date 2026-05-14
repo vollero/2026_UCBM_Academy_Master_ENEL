@@ -1,8 +1,8 @@
 # Elenco tecnico dei materiali della repository
-# Generated at: 2026-05-13T19:53:07+02:00
+# Generated at: 2026-05-14T15:41:26+02:00
 path	bytes
-README.md	4249
-activities/README.md	8418
+README.md	4572
+activities/README.md	8637
 activities/block01_dominio_relazioni/activity.md	2264
 activities/block01_dominio_relazioni/block01_dominio_relazioni_activity.pdf	134443
 activities/block01_dominio_relazioni/solution.md	1651
@@ -79,10 +79,10 @@ activities/block11_performance_explain_indici/activity.md	2194
 activities/block11_performance_explain_indici/block11_performance_explain_indici_activity.pdf	166530
 activities/block11_performance_explain_indici/solution.md	1122
 activities/block11_performance_explain_indici/solution.sql	2287
-activities/block12_capstone_query_design/activity.md	1898
-activities/block12_capstone_query_design/block12_capstone_query_design_activity.pdf	164226
-activities/block12_capstone_query_design/solution.md	942
-activities/block12_capstone_query_design/solution.sql	1450
+activities/block12_capstone_query_design/activity.md	2943
+activities/block12_capstone_query_design/block12_capstone_query_design_activity.pdf	168503
+activities/block12_capstone_query_design/solution.md	1984
+activities/block12_capstone_query_design/solution.sql	2910
 activities/block13_nosql_fondamenti/activity.md	1955
 activities/block13_nosql_fondamenti/block13_nosql_fondamenti_activity.pdf	132588
 activities/block13_nosql_fondamenti/solution.md	1296
@@ -101,11 +101,11 @@ docker-compose.telemetry.yml	1485
 docker-compose.ticketing.yml	1518
 docker-compose.yml	319
 docs/architettura-telemetria.md	3859
-docs/architettura-ticketing.md	1591
-docs/comandi-laboratorio-docker.md	11222
-docs/guida-operativa-piattaforme.md	6552
+docs/architettura-ticketing.md	2254
+docs/comandi-laboratorio-docker.md	11581
+docs/guida-operativa-piattaforme.md	6901
 docs/guida-studenti.md	3386
-docs/indice-materiali.md	4085
+docs/indice-materiali.md	4270
 docs/query-copia-incolla.md	9312
 docs/setup-laboratorio.md	4319
 nosql/README.md	746
@@ -129,16 +129,18 @@ slides/blocks/block08_subquery_set_logic/block08_subquery_set_logic_introduzione
 slides/blocks/block09_cte_viste_mantenibilita/block09_cte_viste_mantenibilita.pdf	206620
 slides/blocks/block10_window_functions/block10_window_functions.pdf	217504
 slides/blocks/block11_performance_explain_indici/block11_performance_explain_indici.pdf	195331
-slides/blocks/block12_capstone_query_design/block12_capstone_query_design.pdf	194751
+slides/blocks/block12_capstone_query_design/block12_capstone_query_design.pdf	210643
 slides/blocks/block13_nosql_fondamenti/block13_nosql_fondamenti.pdf	165136
 slides/blocks/block14_nosql_scenari_modelli/block14_nosql_scenari_modelli.pdf	189933
 slides/blocks/block15_telemetria_mongodb_architettura/block15_telemetria_mongodb_architettura.pdf	192255
 slides/blocks/block16_telemetria_dashboard_capstone/block16_telemetria_dashboard_capstone.pdf	185673
 sql/00_schema_and_all_solutions_postgres.sql	24607
 sql/01_schema_seed_postgres.sql	18477
-sql/02_labs.sql	5800
+sql/02_labs.sql	6034
 sql/03_solutions.sql	6129
 sql/query_copia_incolla.sql	8574
 sql/ticket_architecture_dashboard_queries.sql	2441
-sql/ticket_architecture_schema.sql	9914
+sql/ticket_architecture_schema.sql	10064
 sql/ticket_collector_tick.sql	2640
+sql/ticket_index_tradeoff.sql	5332
+sql/ticket_load_generate.sql	5700

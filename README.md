@@ -76,6 +76,13 @@ docker compose -f docker-compose.ticketing.yml up -d
 
 La guida dedicata è in [docs/architettura-ticketing.md](docs/architettura-ticketing.md).
 
+Per il blocco 12 sono disponibili anche due script per discutere i trade-off degli indici:
+
+```bash
+docker exec -i rdsql-ticket-postgres psql -U training -d training -v load_size=80000 -f /sql/ticket_load_generate.sql
+docker exec -i rdsql-ticket-postgres psql -U training -d training -f /sql/ticket_index_tradeoff.sql
+```
+
 ## Laboratorio NoSQL
 
 I blocchi 13-14 introducono tecnologie, modelli e scenari NoSQL. I blocchi 15-16 usano un sistema di telemetria con MongoDB, collector simulato e interfaccia web `mongo-express`.

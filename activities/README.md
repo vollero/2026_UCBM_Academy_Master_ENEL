@@ -44,7 +44,9 @@ Materiale aggiuntivo disponibile:
 - `block08_subquery_set_logic/docker_exercises.md`: esercitazioni Docker su `EXISTS`, `NOT EXISTS` ed `EXCEPT`;
 - `../sql/ticket_architecture_schema.sql`: schema e dati del caso architetturale ticketing per i blocchi 9-12;
 - `../sql/ticket_collector_tick.sql`: simulazione incrementale del sistema di collezionamento;
-- `../sql/ticket_architecture_dashboard_queries.sql`: query SQL pronte per costruire schede e dashboard in Metabase.
+- `../sql/ticket_architecture_dashboard_queries.sql`: query SQL pronte per costruire schede e dashboard in Metabase;
+- `../sql/ticket_load_generate.sql`: generatore di carico storico per rendere visibili i costi delle query;
+- `../sql/ticket_index_tradeoff.sql`: esperimento guidato su indici, piani di esecuzione e costi di scrittura.
 - `../nosql/telemetry_schema.js`: schema, dati seed e indici del caso telemetria NoSQL;
 - `../nosql/telemetry_collector_tick.js`: simulazione incrementale del collector telemetrico;
 - `../nosql/telemetry_dashboard_queries.js`: aggregation pipeline per dashboard NoSQL.

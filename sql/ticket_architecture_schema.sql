@@ -134,8 +134,13 @@ FROM support_tickets t
 JOIN ticket_sources s ON s.source_id = t.source_id;
 
 CREATE OR REPLACE VIEW dashboard_daily_flow AS
-WITH days AS (
-    SELECT generate_series(DATE '2026-05-01', DATE '2026-05-13', interval '1 day')::date AS day
+WITH bounds AS (
+    SELECT min(opened_at::date) AS first_day,
+           max(COALESCE(closed_at, opened_at)::date) AS last_day
+    FROM support_tickets
+), days AS (
+    SELECT generate_series(first_day, last_day, interval '1 day')::date AS day
+    FROM bounds
 ), opened AS (
     SELECT opened_at::date AS day, count(*) AS opened_tickets
     FROM support_tickets

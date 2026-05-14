@@ -168,6 +168,21 @@ Simulare un nuovo ticket:
 docker exec -i rdsql-postgres psql -U training -d training < sql/ticket_collector_tick.sql
 ```
 
+Generare carico storico per il blocco 12 nello stack ticketing:
+
+```bash
+docker exec -i rdsql-ticket-postgres psql -U training -d training \
+  -v load_size=80000 \
+  -f /sql/ticket_load_generate.sql
+```
+
+Eseguire l'esperimento sugli indici:
+
+```bash
+docker exec -i rdsql-ticket-postgres psql -U training -d training \
+  -f /sql/ticket_index_tradeoff.sql
+```
+
 Aprire Metabase:
 
 ```text

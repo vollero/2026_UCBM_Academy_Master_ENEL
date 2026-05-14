@@ -109,6 +109,8 @@ sql/query_copia_incolla.sql
 sql/ticket_architecture_schema.sql
 sql/ticket_collector_tick.sql
 sql/ticket_architecture_dashboard_queries.sql
+sql/ticket_load_generate.sql
+sql/ticket_index_tradeoff.sql
 nosql/README.md
 nosql/telemetry_schema.js
 nosql/telemetry_collector_tick.js
