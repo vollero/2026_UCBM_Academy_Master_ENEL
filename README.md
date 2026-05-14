@@ -87,6 +87,13 @@ docker exec -i rdsql-ticket-postgres psql -U training -d training -f /sql/ticket
 
 I blocchi 13-14 introducono tecnologie, modelli e scenari NoSQL. I blocchi 15-16 usano un sistema di telemetria con MongoDB, collector simulato e interfaccia web `mongo-express`.
 
+Per la lezione NoSQL sono disponibili anche due materiali aggiuntivi:
+
+- `slides/blocks/block13_nosql_fondamenti/block13_nosql_fondamenti_panoramica_nosql.pdf`: panoramica comparativa di document database, key-value, wide-column, graph, search, time-series e vector database;
+- `slides/blocks/block14_nosql_scenari_modelli/block14_nosql_scenari_modelli_architetture_polyglot.pdf`: architetture oltre il modello DB singolo, con esempio su gestione guasti e interventi;
+- `activities/block13_nosql_fondamenti/panoramica_comparativa_nosql.md`: handout testuale con tabelle comparative e scenari applicativi;
+- `activities/block14_nosql_scenari_modelli/architetture_polyglot.md`: handout su polyglot persistence, eventi, read model e trade-off.
+
 Per avviare lo stack:
 
 ```bash

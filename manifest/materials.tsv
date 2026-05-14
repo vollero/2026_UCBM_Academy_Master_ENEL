@@ -1,8 +1,8 @@
 # Elenco tecnico dei materiali della repository
-# Generated at: 2026-05-14T15:41:26+02:00
+# Generated at: 2026-05-14T19:11:20+02:00
 path	bytes
-README.md	4572
-activities/README.md	8637
+README.md	5314
+activities/README.md	8962
 activities/block01_dominio_relazioni/activity.md	2264
 activities/block01_dominio_relazioni/block01_dominio_relazioni_activity.pdf	134443
 activities/block01_dominio_relazioni/solution.md	1651
@@ -85,8 +85,10 @@ activities/block12_capstone_query_design/solution.md	1984
 activities/block12_capstone_query_design/solution.sql	2910
 activities/block13_nosql_fondamenti/activity.md	1955
 activities/block13_nosql_fondamenti/block13_nosql_fondamenti_activity.pdf	132588
+activities/block13_nosql_fondamenti/panoramica_comparativa_nosql.md	11179
 activities/block13_nosql_fondamenti/solution.md	1296
 activities/block14_nosql_scenari_modelli/activity.md	1565
+activities/block14_nosql_scenari_modelli/architetture_polyglot.md	9557
 activities/block14_nosql_scenari_modelli/block14_nosql_scenari_modelli_activity.pdf	136499
 activities/block14_nosql_scenari_modelli/solution.md	1588
 activities/block15_telemetria_mongodb_architettura/activity.md	2037
@@ -104,8 +106,8 @@ docs/architettura-telemetria.md	3859
 docs/architettura-ticketing.md	2254
 docs/comandi-laboratorio-docker.md	11581
 docs/guida-operativa-piattaforme.md	6901
-docs/guida-studenti.md	3386
-docs/indice-materiali.md	4270
+docs/guida-studenti.md	4023
+docs/indice-materiali.md	4918
 docs/query-copia-incolla.md	9312
 docs/setup-laboratorio.md	4319
 nosql/README.md	746
@@ -131,7 +133,9 @@ slides/blocks/block10_window_functions/block10_window_functions.pdf	217504
 slides/blocks/block11_performance_explain_indici/block11_performance_explain_indici.pdf	195331
 slides/blocks/block12_capstone_query_design/block12_capstone_query_design.pdf	210643
 slides/blocks/block13_nosql_fondamenti/block13_nosql_fondamenti.pdf	165136
+slides/blocks/block13_nosql_fondamenti/block13_nosql_fondamenti_panoramica_nosql.pdf	207860
 slides/blocks/block14_nosql_scenari_modelli/block14_nosql_scenari_modelli.pdf	189933
+slides/blocks/block14_nosql_scenari_modelli/block14_nosql_scenari_modelli_architetture_polyglot.pdf	166596
 slides/blocks/block15_telemetria_mongodb_architettura/block15_telemetria_mongodb_architettura.pdf	192255
 slides/blocks/block16_telemetria_dashboard_capstone/block16_telemetria_dashboard_capstone.pdf	185673
 sql/00_schema_and_all_solutions_postgres.sql	24607

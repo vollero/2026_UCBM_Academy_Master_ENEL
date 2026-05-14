@@ -15,7 +15,9 @@
 - Blocco 11: `slides/blocks/block11_performance_explain_indici/block11_performance_explain_indici.pdf`
 - Blocco 12: `slides/blocks/block12_capstone_query_design/block12_capstone_query_design.pdf`
 - Blocco 13: `slides/blocks/block13_nosql_fondamenti/block13_nosql_fondamenti.pdf`
+- Blocco 13, panoramica comparativa NoSQL: `slides/blocks/block13_nosql_fondamenti/block13_nosql_fondamenti_panoramica_nosql.pdf`
 - Blocco 14: `slides/blocks/block14_nosql_scenari_modelli/block14_nosql_scenari_modelli.pdf`
+- Blocco 14, architetture polyglot: `slides/blocks/block14_nosql_scenari_modelli/block14_nosql_scenari_modelli_architetture_polyglot.pdf`
 - Blocco 15: `slides/blocks/block15_telemetria_mongodb_architettura/block15_telemetria_mongodb_architettura.pdf`
 - Blocco 16: `slides/blocks/block16_telemetria_dashboard_capstone/block16_telemetria_dashboard_capstone.pdf`
 
@@ -36,6 +38,11 @@ Per ogni blocco sono presenti:
 - Blocco 6: `activities/block06_aggregazioni_kpi/docker_exercises.md`
 - Blocco 7: `activities/block07_ddl_dml_transazioni/docker_exercises.md`
 - Blocco 8: `activities/block08_subquery_set_logic/docker_exercises.md`
+
+## Materiali Aggiuntivi NoSQL
+
+- `activities/block13_nosql_fondamenti/panoramica_comparativa_nosql.md`: panoramica comparativa delle famiglie NoSQL, scenari applicativi, checklist e anti-pattern;
+- `activities/block14_nosql_scenari_modelli/architetture_polyglot.md`: guida al passaggio dal modello DB singolo a un'architettura con eventi, read model e persistenze specializzate.
 
 ## Script SQL Generali
 

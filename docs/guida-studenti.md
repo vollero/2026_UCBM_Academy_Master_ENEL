@@ -37,6 +37,8 @@ Alcuni blocchi includono anche materiali introduttivi o casi studio:
 - blocchi 6-12: introduzioni progressive ai costrutti SQL avanzati;
 - blocchi 4-8: esercitazioni Docker con query da costruire a partire da rappresentazioni tabellari.
 - blocchi 13-14: introduzione a tecnologie, modelli e scenari NoSQL;
+- blocco 13: panoramica comparativa estesa delle famiglie NoSQL in `slides/blocks/block13_nosql_fondamenti/block13_nosql_fondamenti_panoramica_nosql.pdf` e `activities/block13_nosql_fondamenti/panoramica_comparativa_nosql.md`;
+- blocco 14: architetture oltre il modello DB singolo in `slides/blocks/block14_nosql_scenari_modelli/block14_nosql_scenari_modelli_architetture_polyglot.pdf` e `activities/block14_nosql_scenari_modelli/architetture_polyglot.md`;
 - blocchi 15-16: laboratorio MongoDB su un sistema di telemetria con collector simulato e dashboard.
 
 ## Per Lavorare Con SQL
@@ -50,6 +52,8 @@ Per avvio, stop e interazione controllata con le piattaforme usate [guida-operat
 Per copia/incolla rapido durante il laboratorio usate [comandi-laboratorio-docker.md](comandi-laboratorio-docker.md).
 
 ## Per Lavorare Con NoSQL
+
+I blocchi 13-14 sono concettuali: servono a scegliere consapevolmente tra famiglie NoSQL e a capire quando un sistema grande richiede più viste e più tecnologie di persistenza.
 
 I blocchi 15-16 usano MongoDB in Docker. Lo stack è definito in `docker-compose.telemetry.yml` e include:
 

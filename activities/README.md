@@ -47,6 +47,8 @@ Materiale aggiuntivo disponibile:
 - `../sql/ticket_architecture_dashboard_queries.sql`: query SQL pronte per costruire schede e dashboard in Metabase;
 - `../sql/ticket_load_generate.sql`: generatore di carico storico per rendere visibili i costi delle query;
 - `../sql/ticket_index_tradeoff.sql`: esperimento guidato su indici, piani di esecuzione e costi di scrittura.
+- `block13_nosql_fondamenti/panoramica_comparativa_nosql.md`: panoramica comparativa delle famiglie NoSQL con scenari applicativi e tabelle decisionali;
+- `block14_nosql_scenari_modelli/architetture_polyglot.md`: guida al passaggio dal modello DB singolo a un'architettura con eventi, read model e persistenze specializzate;
 - `../nosql/telemetry_schema.js`: schema, dati seed e indici del caso telemetria NoSQL;
 - `../nosql/telemetry_collector_tick.js`: simulazione incrementale del collector telemetrico;
 - `../nosql/telemetry_dashboard_queries.js`: aggregation pipeline per dashboard NoSQL.
