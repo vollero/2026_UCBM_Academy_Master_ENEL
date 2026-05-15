@@ -1200,12 +1200,53 @@ docker compose -f docker-compose.telemetry.yml down -v
 
 | Problema | Controllo | Soluzione |
 | --- | --- | --- |
+| conflitto `container name "/rdnosql-telemetry-mongo" is already in use` | `docker ps -a --filter name=rdnosql-telemetry` | eseguire `docker compose -f docker-compose.telemetry.yml down` dalla repository che ha creato i container, poi rilanciare `up -d` |
 | `mongo-express` non risponde | `docker compose -f docker-compose.telemetry.yml ps` | avviare `mongo-express` |
 | i conteggi cambiano mentre si spiega | `docker compose -f docker-compose.telemetry.yml ps` | fermare `telemetry-collector` |
 | collection vuote | conteggi su `telemetry` | rieseguire `telemetry_schema.js` |
 | porta 8081 occupata | `docker ps` | fermare il container che usa la porta o cambiare porta nel compose |
 | porta 27018 occupata | `docker ps` | fermare il container che usa la porta o cambiare porta nel compose |
 | output diverso tra studenti | collector continuo attivo | usare reset e avvio controllato |
+
+### Caso Specifico: Nome Container Già In Uso
+
+Il file `docker-compose.telemetry.yml` usa nomi container espliciti:
+
+```text
+rdnosql-telemetry-mongo
+rdnosql-telemetry-collector
+rdnosql-telemetry-mongo-express
+```
+
+Questo rende i comandi più semplici da copiare in aula, ma significa che non possono esistere due stack telemetry avviati da cartelle diverse nello stesso computer.
+
+Se compare l'errore:
+
+```text
+Conflict. The container name "/rdnosql-telemetry-mongo" is already in use
+```
+
+controllare i container esistenti:
+
+```bash
+docker ps -a --filter name=rdnosql-telemetry
+```
+
+Soluzione senza cancellare i dati del volume:
+
+```bash
+docker compose -f docker-compose.telemetry.yml down
+docker compose -f docker-compose.telemetry.yml up -d
+```
+
+Se il container è stato creato da un'altra cartella e `down` non lo rimuove, rimuovere solo i container, non i volumi:
+
+```bash
+docker rm rdnosql-telemetry-collector rdnosql-telemetry-mongo-express rdnosql-telemetry-mongo
+docker compose -f docker-compose.telemetry.yml up -d
+```
+
+Usare `down -v` solo quando si vuole cancellare anche il database MongoDB e ripartire da zero.
 
 ## Checklist Finale Per La Classe
 

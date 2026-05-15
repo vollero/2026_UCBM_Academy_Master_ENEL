@@ -332,3 +332,16 @@ mongo-express: 8081
 Se una tabella o una collection non esiste, ricaricare lo schema della piattaforma corrispondente.
 
 Se i dati cambiano mentre state spiegando una query, fermare il collector e simulare manualmente un singolo evento.
+
+Se Docker segnala che il nome container `rdnosql-telemetry-mongo` è già in uso, esiste un vecchio container telemetry creato da un avvio precedente o da un'altra cartella. Controllare con:
+
+```bash
+docker ps -a --filter name=rdnosql-telemetry
+```
+
+Poi rimuovere i container dello stack senza cancellare i volumi dati:
+
+```bash
+docker compose -f docker-compose.telemetry.yml down
+docker compose -f docker-compose.telemetry.yml up -d
+```
