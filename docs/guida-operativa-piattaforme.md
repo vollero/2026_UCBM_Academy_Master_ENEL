@@ -345,3 +345,17 @@ Poi rimuovere i container dello stack senza cancellare i volumi dati:
 docker compose -f docker-compose.telemetry.yml down
 docker compose -f docker-compose.telemetry.yml up -d
 ```
+
+Se MongoDB segnala che `/nosql/telemetry_schema.js` non esiste, verificare:
+
+```bash
+docker exec rdnosql-telemetry-mongo ls -la /nosql
+```
+
+Se `/nosql` è vuota, i container sono rimasti agganciati a un vecchio bind mount dopo una sincronizzazione o aggiornamento della repository. Ricrearli:
+
+```bash
+docker compose -f docker-compose.telemetry.yml down
+docker compose -f docker-compose.telemetry.yml up -d
+docker exec rdnosql-telemetry-mongo mongosh /nosql/telemetry_schema.js
+```

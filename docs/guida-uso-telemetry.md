@@ -1201,6 +1201,7 @@ docker compose -f docker-compose.telemetry.yml down -v
 | Problema | Controllo | Soluzione |
 | --- | --- | --- |
 | conflitto `container name "/rdnosql-telemetry-mongo" is already in use` | `docker ps -a --filter name=rdnosql-telemetry` | eseguire `docker compose -f docker-compose.telemetry.yml down` dalla repository che ha creato i container, poi rilanciare `up -d` |
+| errore `ENOENT`, file `/nosql/telemetry_schema.js` non trovato | `docker exec rdnosql-telemetry-mongo ls -la /nosql` | se `/nosql` è vuota, ricreare i container con `down` e `up -d` perché il mount è rimasto agganciato a una vecchia directory |
 | `mongo-express` non risponde | `docker compose -f docker-compose.telemetry.yml ps` | avviare `mongo-express` |
 | i conteggi cambiano mentre si spiega | `docker compose -f docker-compose.telemetry.yml ps` | fermare `telemetry-collector` |
 | collection vuote | conteggi su `telemetry` | rieseguire `telemetry_schema.js` |
@@ -1247,6 +1248,49 @@ docker compose -f docker-compose.telemetry.yml up -d
 ```
 
 Usare `down -v` solo quando si vuole cancellare anche il database MongoDB e ripartire da zero.
+
+### Caso Specifico: `/nosql` Vuota Dentro Il Container
+
+Se il comando:
+
+```bash
+docker exec rdnosql-telemetry-mongo mongosh /nosql/telemetry_schema.js
+```
+
+produce un errore simile a:
+
+```text
+Error: ENOENT: no such file or directory, open '/nosql/telemetry_schema.js'
+```
+
+controllare il mount:
+
+```bash
+docker exec rdnosql-telemetry-mongo ls -la /nosql
+```
+
+Se la directory è vuota ma sul computer host `nosql/telemetry_schema.js` esiste, il container sta vedendo un bind mount obsoleto. Può succedere dopo una sincronizzazione o un aggiornamento della repository mentre i container sono già avviati.
+
+Rimedio:
+
+```bash
+docker compose -f docker-compose.telemetry.yml down
+docker compose -f docker-compose.telemetry.yml up -d
+docker exec rdnosql-telemetry-mongo ls -la /nosql
+docker exec rdnosql-telemetry-mongo mongosh /nosql/telemetry_schema.js
+```
+
+Nota: usare sempre il percorso assoluto dentro il container:
+
+```bash
+docker exec rdnosql-telemetry-mongo mongosh /nosql/telemetry_schema.js
+```
+
+non:
+
+```bash
+docker exec rdnosql-telemetry-mongo mongosh nosql/telemetry_schema.js
+```
 
 ## Checklist Finale Per La Classe
 
