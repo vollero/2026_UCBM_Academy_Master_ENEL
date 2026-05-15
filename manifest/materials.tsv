@@ -1,5 +1,5 @@
 # Elenco tecnico dei materiali della repository
-# Generated at: 2026-05-15T09:04:47+02:00
+# Generated at: 2026-05-15T09:18:40+02:00
 path	bytes
 README.md	5544
 activities/README.md	8962
@@ -107,7 +107,7 @@ docs/architettura-ticketing.md	2254
 docs/comandi-laboratorio-docker.md	11581
 docs/guida-operativa-piattaforme.md	6901
 docs/guida-studenti.md	4204
-docs/guida-uso-telemetry.md	13994
+docs/guida-uso-telemetry.md	34575
 docs/indice-materiali.md	5027
 docs/query-copia-incolla.md	9312
 docs/setup-laboratorio.md	4319
