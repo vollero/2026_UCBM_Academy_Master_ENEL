@@ -10,6 +10,8 @@ Questa guida riguarda i blocchi 15-16. L'obiettivo è riprodurre una piccola arc
 
 Il modello ricalca lo schema architetturale visto nel sistema ticketing: una sorgente genera eventi, un DBMS li memorizza, alcune query trasformano i dati in indicatori leggibili.
 
+Per una sequenza di test guidata da svolgere in aula, vedere anche [guida-uso-telemetry.md](guida-uso-telemetry.md).
+
 ## Avvio Dello Stack
 
 Dalla cartella principale della repository:

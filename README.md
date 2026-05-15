@@ -24,6 +24,7 @@ Qui trovate slide, attività pratiche, esercitazioni SQL/NoSQL e script per lavo
 - `docker-compose.ticketing.yml`: stack dei blocchi 9-12 con PostgreSQL, collector simulato e Metabase.
 - `docker-compose.telemetry.yml`: stack dei blocchi 15-16 con MongoDB, collector simulato e mongo-express.
 - `docs/query-copia-incolla.md`: query SQL pronte per copia/incolla.
+- `docs/guida-uso-telemetry.md`: sequenza di test e copione operativo per usare l'esempio telemetry in aula.
 
 ## Percorso Del Corso
 
@@ -113,6 +114,8 @@ docker exec rdnosql-telemetry-mongo mongosh /nosql/telemetry_dashboard_queries.j
 ```
 
 La guida dedicata è in [docs/architettura-telemetria.md](docs/architettura-telemetria.md).
+
+Per una sequenza di test guidata da usare in classe, aprite [docs/guida-uso-telemetry.md](docs/guida-uso-telemetry.md).
 
 ## Indice Completo
 

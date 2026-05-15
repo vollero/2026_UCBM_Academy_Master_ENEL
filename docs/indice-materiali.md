@@ -75,4 +75,5 @@ Per ogni blocco sono presenti:
 - `docs/guida-operativa-piattaforme.md`: runbook per avvio, stop e interazione controllata con ticketing e telemetria;
 - `docs/comandi-laboratorio-docker.md`: comandi rapidi per gestione container, `psql`, esercitazioni e soluzioni;
 - `docs/architettura-ticketing.md`: guida specifica per lo stack dei blocchi 9-12;
-- `docs/architettura-telemetria.md`: guida specifica per lo stack NoSQL dei blocchi 15-16.
+- `docs/architettura-telemetria.md`: guida specifica per lo stack NoSQL dei blocchi 15-16;
+- `docs/guida-uso-telemetry.md`: sequenza di test e copione operativo per usare l'esempio telemetry in aula.

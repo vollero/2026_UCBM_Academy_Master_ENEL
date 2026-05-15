@@ -25,6 +25,7 @@ Per ogni blocco:
 - Ambiente Docker del laboratorio: `docker-compose.yml`
 - Comandi rapidi Docker/PostgreSQL/MongoDB: `docs/comandi-laboratorio-docker.md`
 - Guida operativa piattaforme: `docs/guida-operativa-piattaforme.md`
+- Guida uso telemetry in aula: `docs/guida-uso-telemetry.md`
 - Query SQL pronte per copia/incolla: `docs/query-copia-incolla.md`
 
 ## Materiali Aggiuntivi
@@ -62,6 +63,8 @@ I blocchi 15-16 usano MongoDB in Docker. Lo stack è definito in `docker-compose
 - mongo-express, una piccola interfaccia web per ispezionare database e collezioni.
 
 La guida dedicata è [architettura-telemetria.md](architettura-telemetria.md).
+
+La sequenza di test consigliata per usare l'esempio con la classe è [guida-uso-telemetry.md](guida-uso-telemetry.md).
 
 ## Convenzioni Usate Nel Corso
 

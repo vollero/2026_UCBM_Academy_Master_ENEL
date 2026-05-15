@@ -28,6 +28,7 @@ docs/comandi-laboratorio-docker.md
 docs/query-copia-incolla.md
 docs/architettura-ticketing.md
 docs/architettura-telemetria.md
+docs/guida-uso-telemetry.md
 manifest/materials.tsv
 slides/blocks/block01_dominio_relazioni/block01_dominio_relazioni.pdf
 slides/blocks/block02_chiavi_vincoli_integrita/block02_chiavi_vincoli_integrita.pdf
